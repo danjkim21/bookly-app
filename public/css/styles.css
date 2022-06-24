@@ -16,7 +16,7 @@ html {
 /* Buttons */
 .addBookBtn {
   background-color: #ffffff;
-  color:#254129;
+  color: #254129;
   font-weight: 600;
   padding: 0.65rem 1.05rem;
   border: none;
@@ -24,11 +24,56 @@ html {
 }
 .editBookItemBtn {
   background-color: #668a6e;
-  color:#ffffff;
+  color: #ffffff;
   font-size: 0.85rem;
   padding: 0.35rem 1.55rem;
   border: 1px solid #ffffff;
   border-radius: 20px;
+  text-decoration: none;
+}
+/* Popup Modals */
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper a {
+  display: inline-block;
+  text-decoration: none;
+}
+.modal {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(77, 77, 77, 0.7);
+  transition: all 0.4s;
+}
+.modal:target {
+  visibility: visible;
+  opacity: 1;
+}
+.modal__content {
+  border-radius: 4px;
+  position: relative;
+  width: 500px;
+  max-width: 90%;
+  height: 50vh;
+  background: #6b8771;
+  padding: 1em 2em;
+}
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #ffffff;
+  text-decoration: none;
 }
 
 /******************************************
@@ -61,7 +106,7 @@ body {
 }
 .profileAddress {
   color: #bbc1bb;
-  margin-top: 0.5rem
+  margin-top: 0.5rem;
 }
 .navList {
   margin: 0;
@@ -107,7 +152,7 @@ body {
   align-items: center;
   border-bottom: 1px solid #bbc1bb;
 }
-.bookTitle{
+.bookTitle {
   font-weight: 600;
   margin-bottom: 0.25rem;
 }
