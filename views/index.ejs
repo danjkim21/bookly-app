@@ -10,41 +10,43 @@
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+    <script src="https://kit.fontawesome.com/a2f02755e4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/normalize.css" type="text/css" />
     <link rel="stylesheet" href="/css/styles.css" type="text/css" />
   </head>
   <body>
     <section class="sideBar">
       <section class="profileArea">
-        <img src="" alt="profile picture" />
+        <img src="images/headshot copy.jpeg" alt="profile picture" class="profilePicture"/>
         <p class="profileName">Daniel</p>
         <p class="profileAddress">dan.jkim21@gmail.com</p>
       </section>
       <nav class="navContent">
         <ul class="navList">
           <li class="navListItems"><a href="#">Search</a></li>
-          <li class="navListItems"><a href="#">Books</a></li>
+          <li class="navListItems active"><a href="#">Books</a></li>
           <li class="navListItems"><a href="#">Settings</a></li>
         </ul>
       </nav>
     </section>
 
     <main class="appDisplayArea">
-      <h1 class="appTitle">Books Playlist</h1>
       <section class="playlistInfoArea flexBox">
-        <p>Playlist description</p>
-        <button>Add Book</button>
+        <h1 class="appTitle">Books Playlist</h1>
+        <button class="addBookBtn">Add Book</button>
       </section>
+      <p class="playlistDescription">Playlist description</p>
+
       <section class="bookPlaylistArea">
         <section class="bookItem flexBox">
           <img src="" alt="book cover image" class="bookCoverImage" />
           <section class="bookInfo">
-            <p class="bookTitle">Circe</p>
-            <p class="bookAuthor">Madeline Miller</p>
+            <p class="bookTitle">Book Name</p>
+            <p class="bookAuthor">Book Author</p>
           </section>
-          <button>Edit</button>
+          <button class="editBookItemBtn">Edit</button>
         </section>
-      </section>
+
     </main>
 
     <script src="/js/main.js"></script>
