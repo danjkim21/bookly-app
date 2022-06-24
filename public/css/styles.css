@@ -20,12 +20,16 @@ html {
 body {
   background-color: #668a6e;
   color: white;
-  justify-content: space-around;
-  align-items: center;
 }
 /* sideBar Area styling */
-#sideBar {
-  width: 40vw;
+.sideBar {
+  width: 33.3333vw;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+  border: 1px solid red;
 }
 .profileName {
 
@@ -33,7 +37,7 @@ body {
 .profileAddress {
   color: #bbc1bb;
 }
-#navList {
+.navList {
   display: inline;
 }
 .navListItems > a {
@@ -43,8 +47,12 @@ body {
 }
 
 /* appDisplayArea styling */
-#appDisplayArea {
-  width: 60vw;
+.appDisplayArea {
+  width: 66.6667vw;
+  margin-left: 33.3333vw;
+  padding: 1px 16px;
+  height: 1000px;
+  border: 1px solid red;
 }
 .playlistInfoArea {
   width: 100%;
