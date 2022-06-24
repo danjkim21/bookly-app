@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookly</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="/css/styles.css" type="text/css" />
+  </head>
+  <body class="flexBox">
+    <section id="sideBar">
+      <section id="profileArea">
+        <img src="" alt="profile picture" />
+        <p class="profileName">Daniel</p>
+        <p class="profileAddress">dan.jkim21@gmail.com</p>
+      </section>
+      <nav id="navContent">
+        <ul id="navList">
+          <li class="navListItems"><a href="#">Search</a></li>
+          <li class="navListItems"><a href="#">Books</a></li>
+          <li class="navListItems"><a href="#">Settings</a></li>
+        </ul>
+      </nav>
+    </section>
+
+    <main id="appDisplayArea">
+      <h1 id="appTitle">Books Playlist</h1>
+      <section class="playlistInfoArea flexBox">
+        <p>Playlist description</p>
+        <button>Add Book</button>
+      </section>
+      <section class="bookPlaylistArea">
+        <section class="bookItem flexBox">
+          <img src="" alt="book cover image" class="bookCoverImage" />
+          <section class="bookInfo">
+            <p class="bookTitle">Circe</p>
+            <p class="bookAuthor">Madeline Miller</p>
+          </section>
+          <button>Edit</button>
+        </section>
+      </section>
+    </main>
+
+    <script src="/js/main.js"></script>
+  </body>
+</html>

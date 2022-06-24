@@ -1,0 +1,69 @@
+/******************************************
+/* CSS
+/*******************************************/
+/* Box Model Hack */
+* {
+  box-sizing: border-box;
+}
+/* General FlexBox Class Setup */
+.flexBox {
+  display: flex;
+}
+html {
+  font-family: 'open sans', Arial, Helvetica, sans-serif;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+/* general layout styling */
+body {
+  background-color: #668a6e;
+  color: white;
+  justify-content: space-around;
+  align-items: center;
+}
+/* sideBar Area styling */
+#sideBar {
+  width: 40vw;
+}
+.profileName {
+
+}
+.profileAddress {
+  color: #bbc1bb;
+}
+#navList {
+  display: inline;
+}
+.navListItems > a {
+  font-size: 2rem;
+  color: #bbc1bb;
+  text-decoration: none;
+}
+
+/* appDisplayArea styling */
+#appDisplayArea {
+  width: 60vw;
+}
+.playlistInfoArea {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.bookItem {
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #bbc1bb;
+}
+.bookTitle{
+
+}
+.bookAuthor {
+  color: #bbc1bb;
+}
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
