@@ -1,4 +1,5 @@
 // ========= Fetch Google Books API JSON Data ========= //
+// GOOGLE API Docs - https://developers.google.com/books/docs/v1/using
 
 // ========= Auto Complete Functions ========= //
 // On event 'input' enable autocomplete search input
@@ -6,7 +7,7 @@ async function enableBookSearchInput() {
   let searchInput = document.querySelector('.bookSearchInput');
   searchInput.addEventListener('input', () => {
     let searchInputResult = searchInput.value;
-    console.log(searchInputResult);
+    // console.log(searchInputResult);
 
     fetchBooksData(searchInputResult);
   });
@@ -21,10 +22,10 @@ async function fetchBooksData(searchInputResult) {
     );
     const data = await response.json();
     const bookSearchResults = data.items;
-    console.log(bookSearchResults);
+    // console.log(bookSearchResults);
 
     writeToSuggestions(bookSearchResults);
-    suggestionsListListeners(bookSearchResults)
+    suggestionsListListeners(bookSearchResults);
   } catch (err) {
     console.error(err);
   }
@@ -64,56 +65,45 @@ async function suggestionsListListeners(bookSearchResults) {
       document.querySelector('.suggestions').innerHTML = '';
       document.querySelector('.bookSearchInput').value = '';
       // Get object data by the data-id attribute
-      const clickedBookItem = bookSearchResults.filter((item) => item.id === e.currentTarget.getAttribute('data-id'))
+      const clickedBookItem = bookSearchResults.filter(
+        (item) => item.id === e.currentTarget.getAttribute('data-id')
+      );
       console.log(clickedBookItem);
-    })
+      
+      // Send and run selected book item data to addbook() function
+      addBook(clickedBookItem);
+    });
   }
 }
 
-// INPUT AUTOCOMPLETE ON PAGE LOAD - IIFE ----------------
-// (function () {
-//   'use strict';
-//   let reactorNameInput = document.querySelector('.bookSearchInput');
-//   let ulField = document.querySelector('#suggestions');
+// ========= CRUD main.js <--> server.js connections ========= //
 
-//   reactorNameInput.addEventListener('input', changeAutoComplete);
-//   reactorNameInput.addEventListener('focusin', removeHidden);
-//   ulField.addEventListener('click', selectItem);
+// Send new book data to MongoDB on POST (see server.js)
+async function addBook(clickedBookItem) {
+  const bookId = clickedBookItem[0].id;
+  const bookTitle = clickedBookItem[0].volumeInfo.title;
+  const bookAuthors = clickedBookItem[0].volumeInfo.authors;
+  const bookPageCount = clickedBookItem[0].volumeInfo.pageCount;
+  const bookDescription = clickedBookItem[0].volumeInfo.description;
+  const bookImage = clickedBookItem[0].volumeInfo.imageLinks.smallThumbnail;
 
-//   // Fetch Adv. Reactor DB data for autocomplete list
-//   let reactorSearchList = [];
-//   fetch(`https://adv-nuclear-api.herokuapp.com/api/`)
-//     .then((response) => response.json())
-//     .then((dataResults) => {
-//       dataResults.forEach((elem) => reactorSearchList.push(elem.name));
-//     });
-//   // console.log(reactorSearchList)
-
-//   function removeHidden() {
-//     ulField.classList.remove('hidden');
-//   }
-//   function changeAutoComplete({ target }) {
-//     let data = target.value;
-//     ulField.innerHTML = ``;
-//     if (data.length) {
-//       let autoCompleteValues = autoComplete(data);
-//       autoCompleteValues.forEach((elem) => {
-//         addItem(elem);
-//       });
-//     }
-//   }
-//   function autoComplete(inputValue) {
-//     return reactorSearchList.filter((elem) =>
-//       elem.toLowerCase().includes(inputValue.toLowerCase())
-//     );
-//   }
-//   function addItem(value) {
-//     ulField.innerHTML = ulField.innerHTML + `<li>${value}</li>`;
-//   }
-//   function selectItem({ target }) {
-//     if (target.tagName === 'LI') {
-//       reactorNameInput.value = target.textContent;
-//       ulField.innerHTML = ``;
-//     }
-//   }
-// })();
+  try {
+    const response = await fetch('addBook', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        bookId: bookId,
+        bookTitle: bookTitle,
+        bookAuthors: bookAuthors,
+        bookPageCount: bookPageCount,
+        bookDescription: bookDescription,
+        bookImage: bookImage,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+    location.reload();
+  } catch (err) {
+    console.log(err);
+  }
+}
