@@ -57,14 +57,15 @@ async function writeToSuggestions(bookSearchResults) {
 // Add event listeners on book autocomplete suggestion list li's
 async function suggestionsListListeners(bookSearchResults) {
   let listItems = document.querySelectorAll('.autocomplete-item');
+
   // Iterate through all suggestion items li's in the list ul
   for (let item of listItems) {
     item.addEventListener('click', (e) => {
       document.querySelector('.suggestions').innerHTML = '';
       document.querySelector('.bookSearchInput').value = '';
       // Get object data by the data-id attribute
-      const clickedBook = bookSearchResults.filter((item) => item.id === e.currentTarget.getAttribute('data-id'))
-      console.log(clickedBook);
+      const clickedBookItem = bookSearchResults.filter((item) => item.id === e.currentTarget.getAttribute('data-id'))
+      console.log(clickedBookItem);
     })
   }
 }

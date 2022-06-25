@@ -16,6 +16,10 @@
 html {
   font-family: 'open sans', Arial, Helvetica, sans-serif;
 }
+.sectionTitle {
+  color:#d4dbd5;
+  font-size: 1.25rem;
+}
 
 /******************************************
 /* LAYOUT
@@ -83,6 +87,9 @@ body {
 }
 .playlistDescription {
   color: #d4dbd5;
+}
+.ActiveBookArea {
+  padding-top: 2rem;
 }
 .bookPlaylistArea {
   padding-top: 2rem;
@@ -193,20 +200,31 @@ body {
   color: #ffffff;
   text-decoration: none;
 }
+.editBookSummaryMain {
+  align-items: center;
+}
+.editBookInfo {
+  padding-left: 1rem;
+}
 
 /* Autocomplete Suggestions Dropdown Modal */
 .bookSearchInput {
   width: 100%;
   padding: 0.75rem 0;
   border: none;
+  border-radius: 4px 4px 0 0;
   z-index: 5;
 }
+.bookSearchInput::placeholder {
+  padding-left: 0.55rem;
+}
 .suggestionsContainer {
-  height: 255px;
+  height: 265px;
   position: relative;
   top: -20px;
   background-color: #d4dbd5;
   overflow: scroll;
+  border-radius: 0 0 4px 4px;
   z-index: -1;
 }
 .suggestions {

@@ -60,13 +60,17 @@
             <section class="modal__content">
               <h3>Add Book to Playlist</h3>
               <form action="">
-                <input type="text" placeholder="Enter book name" class="bookSearchInput"/>
+                <input
+                  type="text"
+                  placeholder="Enter book name"
+                  class="bookSearchInput"
+                />
                 <!-- <button>Search</button> -->
               </form>
               <section class="suggestionsContainer" class="flexBox">
                 <ul class="suggestions" class=""></ul>
               </section>
-          
+
               <a href="#" class="modal__close">&times;</a>
             </section>
           </section>
@@ -74,13 +78,23 @@
       </section>
 
       <!-- Playlist Description Paragraph -->
-      <p class="playlistDescription">Playlist description</p>
+      <p class="playlistDescription">
+        Playlist description ... Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+        Hic, consequatur! Fugiat dicta asperiores quis suscipit iste numquam atque optio
+        mollitia odio modi!
+      </p>
 
-      <!-- Books Area -->
-      <section class="bookPlaylistArea">
+      <!-- Now Playing Playlist Section Area -->
+      <section class="ActiveBookArea">
+        <h2 class="sectionTitle">Now playing</h2>
+
         <!-- Demo Book 1 -->
         <section class="bookItem flexBox">
-          <img src="images/headshot copy.jpeg" alt="book cover image" class="bookCoverImage" />
+          <img
+            src="images/headshot copy.jpeg"
+            alt="book cover image"
+            class="bookCoverImage"
+          />
           <section class="bookInfo">
             <p class="bookTitle">Book Name</p>
             <p class="bookAuthor">Book Author</p>
@@ -88,8 +102,62 @@
           <a class="editBookItemBtn" href="#editBookModal">Edit</a>
           <section id="editBookModal" class="modal">
             <section class="modal__content">
-              <p class="bookTitle">Book Name</p>
-              <p class="bookAuthor">Book Author</p>
+              <section class="editBookSummaryMain flexBox">
+                <img
+                  src="images/headshot copy.jpeg"
+                  alt="book cover image"
+                  class="bookCoverImage"
+                />
+                <section class="editBookInfo">
+                  <p class="bookTitle">Book Name</p>
+                  <p class="bookAuthor">Book Author</p>
+                </section>
+              </section>
+              <p class="bookDescription">
+                Book description ... Lorem ipsum dolor, sit amet consectetur adipisicing
+                elit. Ipsa, molestias eos sunt sapiente esse excepturi eaque est saepe
+                officia.
+              </p>
+              <a href="#" class="modal__close">&times;</a>
+            </section>
+          </section>
+        </section>
+      </section>
+
+      <!-- Next Up Playlist Section Area -->
+      <section class="bookPlaylistArea">
+        <h2 class="sectionTitle">Next up</h2>
+
+        <!-- Demo Book 2 -->
+        <section class="bookItem flexBox">
+          <img
+            src="images/headshot copy.jpeg"
+            alt="book cover image"
+            class="bookCoverImage"
+          />
+          <section class="bookInfo">
+            <p class="bookTitle">Book Name</p>
+            <p class="bookAuthor">Book Author</p>
+          </section>
+          <a class="editBookItemBtn" href="#editBookModal">Edit</a>
+          <section id="editBookModal" class="modal">
+            <section class="modal__content">
+              <section class="editBookSummaryMain flexBox">
+                <img
+                  src="images/headshot copy.jpeg"
+                  alt="book cover image"
+                  class="bookCoverImage"
+                />
+                <section class="editBookInfo">
+                  <p class="bookTitle">Book Name</p>
+                  <p class="bookAuthor">Book Author</p>
+                </section>
+              </section>
+              <p class="bookDescription">
+                Book description ... Lorem ipsum dolor, sit amet consectetur adipisicing
+                elit. Ipsa, molestias eos sunt sapiente esse excepturi eaque est saepe
+                officia.
+              </p>
               <a href="#" class="modal__close">&times;</a>
             </section>
           </section>
