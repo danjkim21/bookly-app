@@ -1,5 +1,7 @@
-// Fetch Google Books API JSON Data
+// ========= Fetch Google Books API JSON Data ========= //
 
+// ========= Auto Complete Functions ========= //
+// On event 'input' enable autocomplete search input
 async function enableBookSearchInput() {
   let searchInput = document.querySelector('.bookSearchInput');
   searchInput.addEventListener('input', () => {
@@ -11,6 +13,7 @@ async function enableBookSearchInput() {
 }
 enableBookSearchInput();
 
+// after autocomplete search input is enabled = get book results based on input event
 async function fetchBooksData(searchInputResult) {
   try {
     const response = await fetch(
@@ -21,16 +24,20 @@ async function fetchBooksData(searchInputResult) {
     console.log(bookSearchResults);
 
     writeToSuggestions(bookSearchResults);
+    suggestionsListListeners(bookSearchResults)
   } catch (err) {
     console.error(err);
   }
 }
 
+// Write book autocomplete suggestions to DOM
 async function writeToSuggestions(bookSearchResults) {
   let suggestions = document.querySelector('.suggestions');
   suggestions.innerHTML = '';
 
+  // If there are matches in the book api ...
   if (bookSearchResults.length > 0) {
+    // create the HTML list items (title & Authors)
     let html = bookSearchResults.map((elem) => {
       return `
         <li class="autocomplete-item" data-id="${elem.id}">
@@ -39,10 +46,26 @@ async function writeToSuggestions(bookSearchResults) {
         </li>
               `;
     });
+    // Add HTML list items to the DOM
     html.unshift(suggestions);
     suggestions.innerHTML = html.join('');
   } else {
     console.log('no results');
+  }
+}
+
+// Add event listeners on book autocomplete suggestion list li's
+async function suggestionsListListeners(bookSearchResults) {
+  let listItems = document.querySelectorAll('.autocomplete-item');
+  // Iterate through all suggestion items li's in the list ul
+  for (let item of listItems) {
+    item.addEventListener('click', (e) => {
+      document.querySelector('.suggestions').innerHTML = '';
+      document.querySelector('.bookSearchInput').value = '';
+      // Get object data by the data-id attribute
+      const clickedBook = bookSearchResults.filter((item) => item.id === e.currentTarget.getAttribute('data-id'))
+      console.log(clickedBook);
+    })
   }
 }
 

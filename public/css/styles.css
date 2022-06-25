@@ -124,6 +124,10 @@ body {
 .editBookItemBtn {
   cursor: pointer;
 }
+.autocomplete-item:hover {
+  cursor: pointer;
+  background-color: #b0c5b5;
+} 
 
 /* Buttons */
 .addBookBtn {
@@ -180,6 +184,7 @@ body {
   height: 50vh;
   background: #6b8771;
   padding: 1em 2em;
+  z-index: 0;
 }
 .modal__close {
   position: absolute;
@@ -189,21 +194,31 @@ body {
   text-decoration: none;
 }
 
-/* Autocomplete Suggestions Dropdown */
+/* Autocomplete Suggestions Dropdown Modal */
+.bookSearchInput {
+  width: 100%;
+  padding: 0.75rem 0;
+  border: none;
+  z-index: 5;
+}
 .suggestionsContainer {
-  height: 250px;
+  height: 255px;
+  position: relative;
+  top: -20px;
   background-color: #d4dbd5;
   overflow: scroll;
+  z-index: -1;
 }
 .suggestions {
   margin: 0;
   padding: 0.25rem 0;
 }
-.suggestions > li {
+.autocomplete-item {
   color: black;
   display: block;
   border-top: 1px solid #403f40;
 }
+
 .itemTitle {
   font-weight: 600;
   font-size: 0.85rem;
@@ -212,6 +227,6 @@ body {
 }
 .itemAuthors {
   font-size: 0.85rem;
-  margin: 0.35rem 0;
+  margin: 0 0;
   padding:  0 0.35rem;
 }
