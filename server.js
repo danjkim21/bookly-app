@@ -31,11 +31,14 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then((client)
 // ====== CRUD ====== //
 // Return Homepage on '/'
 app.get('/', async (request, response) => {
-  try {
-    response.render('index.ejs');
-  } catch (error) {
-    response.status(500).send({ message: error.message });
-  }
+  db.collection('books')
+    .find()
+    .toArray()
+    .then((data) => {
+      response.render('index.ejs', { booksData: data });
+      response.redirect('/');
+    })
+    .catch((error) => console.error(error));
 });
 
 // Add new books to MongoDB on '/addBook' from inputbtn (see main.js)

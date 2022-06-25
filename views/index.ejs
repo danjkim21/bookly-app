@@ -128,40 +128,34 @@
       <section class="bookPlaylistArea">
         <h2 class="sectionTitle">Next up</h2>
 
-        <!-- Demo Book 2 -->
+        <!-- Loop through book entries-->
+        <% booksData.map(elem => { %>
         <section class="bookItem flexBox">
-          <img
-            src="images/headshot copy.jpeg"
-            alt="book cover image"
-            class="bookCoverImage"
-          />
+          <!-- Add books image -->
+          <img src="<%= elem.bookImage %>" alt="book cover image" class="bookCoverImage" />
+          <!-- Add books title & authors -->
           <section class="bookInfo">
-            <p class="bookTitle">Book Name</p>
-            <p class="bookAuthor">Book Author</p>
+            <p class="bookTitle"><%= elem.bookTitle %></p>
+            <p class="bookAuthor"><%= elem.bookAuthors %></p>
           </section>
           <a class="editBookItemBtn" href="#editBookModal">Edit</a>
+
+          <!-- Add books modal details - Fix Modal Loop -->
           <section id="editBookModal" class="modal">
             <section class="modal__content">
               <section class="editBookSummaryMain flexBox">
-                <img
-                  src="images/headshot copy.jpeg"
-                  alt="book cover image"
-                  class="bookCoverImage"
-                />
+                <img src="<%= elem.bookImage %>" alt="book cover image" class="bookCoverImage" />
                 <section class="editBookInfo">
-                  <p class="bookTitle">Book Name</p>
-                  <p class="bookAuthor">Book Author</p>
+                  <p class="bookTitle"><%= elem.bookTitle %></p>
+                  <p class="bookAuthor"><%= elem.bookAuthors %></p>
                 </section>
               </section>
-              <p class="bookDescription">
-                Book description ... Lorem ipsum dolor, sit amet consectetur adipisicing
-                elit. Ipsa, molestias eos sunt sapiente esse excepturi eaque est saepe
-                officia.
-              </p>
+              <p class="bookDescription"><%= elem.bookDescription %></p>
               <a href="#" class="modal__close">&times;</a>
             </section>
           </section>
         </section>
+        <% }) %>
       </section>
     </main>
 
