@@ -9,82 +9,23 @@
 .flexBox {
   display: flex;
 }
+/* General Hidden Class Setup */
+.hidden {
+  display: none;
+}
 html {
   font-family: 'open sans', Arial, Helvetica, sans-serif;
-}
-
-/* Buttons */
-.addBookBtn {
-  background-color: #ffffff;
-  color: #254129;
-  font-weight: 600;
-  padding: 0.65rem 1.05rem;
-  border: none;
-  border-radius: 20px;
-}
-.editBookItemBtn {
-  background-color: #668a6e;
-  color: #ffffff;
-  font-size: 0.85rem;
-  padding: 0.35rem 1.55rem;
-  border: 1px solid #ffffff;
-  border-radius: 20px;
-  text-decoration: none;
-}
-/* Popup Modals */
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.wrapper a {
-  display: inline-block;
-  text-decoration: none;
-}
-.modal {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(77, 77, 77, 0.7);
-  transition: all 0.4s;
-}
-.modal:target {
-  visibility: visible;
-  opacity: 1;
-}
-.modal__content {
-  border-radius: 4px;
-  position: relative;
-  width: 500px;
-  max-width: 90%;
-  height: 50vh;
-  background: #6b8771;
-  padding: 1em 2em;
-}
-.modal__close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: #ffffff;
-  text-decoration: none;
 }
 
 /******************************************
 /* LAYOUT
 /*******************************************/
-/* general layout styling */
+/* ===== general layout styling ===== */
 body {
   background-color: #668a6e;
   color: white;
 }
-/* sideBar Area styling */
+/* ===== sideBar Area styling ===== */
 .sideBar {
   width: 25vw;
   margin: 0;
@@ -114,10 +55,10 @@ body {
 }
 .navListItems {
   display: block;
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.75rem;
 }
 .navListItems > a {
-  font-size: 1.75rem;
+  font-size: 1.6rem;
   font-weight: 600;
   color: #bbc1bb;
   text-decoration: none;
@@ -127,12 +68,12 @@ body {
   color: white;
 }
 
-/* appDisplayArea styling */
+/* ===== appDisplayArea styling ===== */
 .appDisplayArea {
   width: 75vw;
   margin-left: 25vw;
   padding: 3.5rem 3.5rem 3.5rem 2.5rem;
-  height: 1000px;
+  height: 100%;
   /* border: 1px solid red; */
 }
 .playlistInfoArea {
@@ -151,6 +92,15 @@ body {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #bbc1bb;
+}
+.bookCoverImage {
+  height: 50px;
+  width: 50px;
+  border-radius: 4px;
+}
+.bookInfo {
+  flex-grow: 2;
+  padding-left: 1rem;
 }
 .bookTitle {
   font-weight: 600;
@@ -173,4 +123,95 @@ body {
 }
 .editBookItemBtn {
   cursor: pointer;
+}
+
+/* Buttons */
+.addBookBtn {
+  background-color: #ffffff;
+  color: #254129;
+  font-weight: 600;
+  padding: 0.65rem 1.05rem;
+  border: none;
+  border-radius: 20px;
+}
+.editBookItemBtn {
+  background-color: #668a6e;
+  color: #ffffff;
+  font-size: 0.85rem;
+  padding: 0.35rem 1.55rem;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  text-decoration: none;
+}
+
+/* Popup Modals */
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper a {
+  display: inline-block;
+  text-decoration: none;
+}
+.modal {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(77, 77, 77, 0.5);
+  transition: all 0.4s;
+}
+.modal:target {
+  visibility: visible;
+  opacity: 1;
+}
+.modal__content {
+  border-radius: 4px;
+  position: relative;
+  width: 500px;
+  max-width: 90%;
+  height: 50vh;
+  background: #6b8771;
+  padding: 1em 2em;
+}
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Autocomplete Suggestions Dropdown */
+.suggestionsContainer {
+  height: 250px;
+  background-color: #d4dbd5;
+  overflow: scroll;
+}
+.suggestions {
+  margin: 0;
+  padding: 0.25rem 0;
+}
+.suggestions > li {
+  color: black;
+  display: block;
+  border-top: 1px solid #403f40;
+}
+.itemTitle {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin: 0.25rem 0;
+  padding: 0 0.35rem;
+}
+.itemAuthors {
+  font-size: 0.85rem;
+  margin: 0.35rem 0;
+  padding:  0 0.35rem;
 }
