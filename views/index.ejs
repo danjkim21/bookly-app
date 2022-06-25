@@ -138,10 +138,10 @@
             <p class="bookTitle"><%= elem.bookTitle %></p>
             <p class="bookAuthor"><%= elem.bookAuthors %></p>
           </section>
-          <a class="editBookItemBtn" href="#editBookModal">Edit</a>
+          <a class="editBookItemBtn" href="#<%= elem.bookId %>">Edit</a>
 
-          <!-- Add books modal details - Fix Modal Loop -->
-          <section id="editBookModal" class="modal">
+          <!-- Add books modal details -->
+          <section id="<%= elem.bookId %>" class="modal">
             <section class="modal__content">
               <section class="editBookSummaryMain flexBox">
                 <img src="<%= elem.bookImage %>" alt="book cover image" class="bookCoverImage" />

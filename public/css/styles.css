@@ -206,6 +206,13 @@ body {
 .editBookInfo {
   padding-left: 1rem;
 }
+.bookDescription {
+  max-height: 125px;
+  padding: 0.65rem;
+  overflow-y: auto;
+  border-radius: 4px;
+  background-color: #78967dc2;
+}
 
 /* Autocomplete Suggestions Dropdown Modal */
 .bookSearchInput {
