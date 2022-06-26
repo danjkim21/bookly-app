@@ -37,6 +37,7 @@
         <ul class="navList">
           <li class="navListItems"><a href="#">Search</a></li>
           <li class="navListItems active"><a href="#">Books</a></li>
+          <li class="navListItems"><a href="#">Completed</a></li>
           <li class="navListItems"><a href="#">Settings</a></li>
         </ul>
       </nav>
@@ -100,6 +101,8 @@
             <p class="bookAuthor">Book Author</p>
           </section>
           <a class="editBookItemBtn" href="#editBookModal">Edit</a>
+          <i class="fa-solid fa-check completeBookItem"></i>
+
           <section id="editBookModal" class="modal">
             <section class="modal__content">
               <section class="editBookSummaryMain flexBox">
@@ -130,7 +133,7 @@
 
         <!-- Loop through book entries-->
         <% booksData.map(elem => { %>
-        <section class="bookItem flexBox">
+        <section class="bookItem flexBox" data-id="<%= elem.bookId %>">
           <!-- Add books image -->
           <img src="<%= elem.bookImage %>" alt="book cover image" class="bookCoverImage" />
           <!-- Add books title & authors -->
@@ -139,6 +142,7 @@
             <p class="bookAuthor"><%= elem.bookAuthors %></p>
           </section>
           <a class="editBookItemBtn" href="#<%= elem.bookId %>">Edit</a>
+          <i class="fa-solid fa-delete-left removeBookItemBtns"></i>
 
           <!-- Add books modal details -->
           <section id="<%= elem.bookId %>" class="modal">

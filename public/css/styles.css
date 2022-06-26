@@ -17,7 +17,7 @@ html {
   font-family: 'open sans', Arial, Helvetica, sans-serif;
 }
 .sectionTitle {
-  color:#d4dbd5;
+  color: #d4dbd5;
   font-size: 1.25rem;
 }
 
@@ -125,16 +125,24 @@ body {
 .navListItems > a:hover {
   color: white;
 }
-.addBookBtn {
+.addBookBtn:hover {
   cursor: pointer;
 }
-.editBookItemBtn {
+.editBookItemBtn:hover {
   cursor: pointer;
+}
+.removeBookItemBtns:hover, .completeBookItem:hover {
+  cursor: pointer;
+  color: #68d668dc;
 }
 .autocomplete-item:hover {
   cursor: pointer;
   background-color: #b0c5b5;
-} 
+}
+.editBookItemBtn:hover {
+  background-color: #ffffff;
+  color: #254129;
+}
 
 /* Buttons */
 .addBookBtn {
@@ -153,6 +161,11 @@ body {
   border: 1px solid #ffffff;
   border-radius: 20px;
   text-decoration: none;
+  transition: all ease-in-out 65ms;
+}
+.removeBookItemBtns, .completeBookItem {
+  padding-left: 1rem;
+  transition: all ease-in-out 75ms;
 }
 
 /* Popup Modals */
@@ -176,7 +189,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(77, 77, 77, 0.5);
+  background: #4d4d4d80;
   transition: all 0.4s;
 }
 .modal:target {
@@ -207,6 +220,7 @@ body {
   padding-left: 1rem;
 }
 .bookDescription {
+  font-size: 0.9rem;
   max-height: 125px;
   padding: 0.65rem;
   overflow-y: auto;
@@ -229,7 +243,7 @@ body {
   height: 265px;
   position: relative;
   top: -20px;
-  background-color: #d4dbd5;
+  background-color: #d4dbd5be;
   overflow: scroll;
   border-radius: 0 0 4px 4px;
   z-index: -1;
@@ -253,5 +267,5 @@ body {
 .itemAuthors {
   font-size: 0.85rem;
   margin: 0 0;
-  padding:  0 0.35rem;
+  padding: 0 0.35rem;
 }

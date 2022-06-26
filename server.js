@@ -64,3 +64,14 @@ app.post('/addBook', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port`);
 });
+
+// Remove selected book from MongoDB on '/rmBook' from removeBookItemBtns (see main.js)
+app.delete('/rmBook', (request, response) => {
+  db.collection('books').deleteOne({bookId: request.body.bookId})
+  .then(result => {
+      console.log('Book Deleted')
+      response.json('Book Deleted')
+  })
+  .catch(error => console.error(error))
+
+})

@@ -69,7 +69,7 @@ async function suggestionsListListeners(bookSearchResults) {
         (item) => item.id === e.currentTarget.getAttribute('data-id')
       );
       console.log(clickedBookItem);
-      
+
       // Send and run selected book item data to addbook() function
       addBook(clickedBookItem);
     });
@@ -103,7 +103,36 @@ async function addBook(clickedBookItem) {
     const data = await response.json();
     console.log(data);
     location.reload();
+    
   } catch (err) {
-    console.log(err);
+    console.error(err);
+  }
+}
+
+// Remove selected book from MongoDB on '/rmBook' on DELETE (see server.js)
+const rmBookBtn = document.querySelectorAll('.removeBookItemBtns');
+
+Array.from(rmBookBtn).forEach((elem) => {
+  elem.addEventListener('click', rmBookItem);
+});
+
+async function rmBookItem() {
+  const bookId = this.parentNode.getAttribute('data-id');
+
+  try {
+    const response = await fetch('rmBook', {
+      method: 'delete',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        bookId: bookId,
+      }),
+    });
+
+    const data = await response.json();
+    console.log(data);
+    location.reload();
+
+  } catch (err) {
+    console.error(err);
   }
 }
