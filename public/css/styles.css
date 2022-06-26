@@ -76,7 +76,7 @@ body {
 .appDisplayArea {
   width: 75vw;
   margin-left: 25vw;
-  padding: 3.5rem 3.5rem 3.5rem 2.5rem;
+  padding: 3.5rem 6.5rem 2.5rem 5.5rem;
   height: 100%;
   /* border: 1px solid red; */
 }
@@ -87,18 +87,21 @@ body {
 }
 .playlistDescription {
   color: #d4dbd5;
+  width: 80%;
 }
 .ActiveBookArea {
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
 .bookPlaylistArea {
   padding-top: 2rem;
 }
 .bookItem {
   width: 100%;
+  padding: 0 1rem;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #bbc1bb;
+  transition: all ease-in-out 85ms;
 }
 .bookCoverImage {
   height: 50px;
@@ -131,17 +134,22 @@ body {
 .editBookItemBtn:hover {
   cursor: pointer;
 }
-.removeBookItemBtns:hover, .completeBookItem:hover {
+.removeBookItemBtns:hover,
+.completeBookItem:hover {
   cursor: pointer;
   color: #68d668dc;
 }
 .autocomplete-item:hover {
   cursor: pointer;
-  background-color: #b0c5b5;
+  background-color: #7a9983ab;
 }
 .editBookItemBtn:hover {
   background-color: #ffffff;
   color: #254129;
+}
+.bookItem:hover {
+  background-color: #7a9983ab;
+  border-radius: 2px;
 }
 
 /* Buttons */
@@ -163,7 +171,8 @@ body {
   text-decoration: none;
   transition: all ease-in-out 65ms;
 }
-.removeBookItemBtns, .completeBookItem {
+.removeBookItemBtns,
+.completeBookItem {
   padding-left: 1rem;
   transition: all ease-in-out 75ms;
 }
@@ -233,7 +242,7 @@ body {
   width: 100%;
   padding: 0.75rem 0;
   border: none;
-  border-radius: 4px 4px 0 0;
+  border-radius: 4px;
   z-index: 5;
 }
 .bookSearchInput::placeholder {
@@ -242,8 +251,7 @@ body {
 .suggestionsContainer {
   height: 265px;
   position: relative;
-  top: -20px;
-  background-color: #d4dbd5be;
+  top: -25px;
   overflow: scroll;
   border-radius: 0 0 4px 4px;
   z-index: -1;
@@ -253,19 +261,31 @@ body {
   padding: 0.25rem 0;
 }
 .autocomplete-item {
-  color: black;
+  color: white;
+  padding: 0.45rem 0;
   display: block;
-  border-top: 1px solid #403f40;
+  border-top: 1px solid #bbc1bb;
 }
 
 .itemTitle {
   font-weight: 600;
-  font-size: 0.85rem;
+  font-size: 0.90rem;
   margin: 0.25rem 0;
   padding: 0 0.35rem;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 420px;
 }
 .itemAuthors {
+  color: #d4dbd5;
   font-size: 0.85rem;
   margin: 0 0;
   padding: 0 0.35rem;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 420px;
 }
