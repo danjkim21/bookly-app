@@ -48,6 +48,11 @@ body {
 .profileAddress {
   color: #bbc1bb;
   margin-top: 0.5rem;
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 97.5%;
 }
 .navList {
   margin: 0;
@@ -133,7 +138,8 @@ body {
 .removeBookItemBtns:hover,
 .completeBookItem:hover,
 .modal__close:hover,
-.likeBookItemBtns:hover {
+.likeBookItemBtns:hover,
+.hamburgerBtn:hover {
   cursor: pointer;
   color: #63da63dc;
 }
@@ -152,8 +158,6 @@ body {
 .bookItem:hover .likeBookItemBtns {
   visibility: visible;
 }
-
-
 
 /* Buttons */
 .addBookBtn {
@@ -184,6 +188,10 @@ body {
   transition: all ease-in-out 75ms;
 
   visibility: hidden;
+}
+.hamburgerBtn {
+  display: none;
+  transition: all ease-in-out 75ms;
 }
 
 /* Popup Modals */
@@ -307,4 +315,76 @@ body {
 /* General Visibile Class Setup */
 .visible {
   visibility: visible;
+}
+
+/* Media Queries - Mobile Responsiveness */
+/* Med-Large size screens */
+@media screen and (max-width: 1000px) {
+  .appDisplayArea {
+    padding: 3.5rem 3.5rem 2.5rem 3.5rem;
+  }
+}
+/* Smaller screens - turn side bar into hamburger btn */
+@media screen and (max-width: 855px) {
+  .appDisplayArea {
+    width: 92.5vw;
+    margin-left: 7.5vw;
+  }
+  .sideBar {
+    width: 7.5vw;
+    padding: 0;
+  }
+  .hamburgerBtn {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 0.5rem 0.5rem;
+  }
+  .profileArea {
+    visibility: hidden;
+  }
+  .navContent {
+    visibility: hidden;
+  }
+}
+/* Smaller screens - turn side bar into hamburger btn */
+@media screen and (max-width: 665px) {
+  .appDisplayArea {
+    padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  }
+}
+
+@media screen and (max-width: 555px) {
+  .sideBar {
+    width: 35px;
+    padding: 0;
+  }
+  .hamburgerBtn {
+    display: block;
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    padding: 0.25rem 0.25rem;
+  }
+  .appDisplayArea {
+    width: 100vw;
+    margin-left: 0;
+    padding: 2.5rem 1.25rem 1.5rem 1.25rem;
+  }
+}
+/* Fixes addbookBTN overflow */
+@media screen and (max-width: 370px) {
+  .playlistInfoArea {
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+  .addBookBtn {
+    width: 75%;
+  }
+  .playlistDescription {
+    color: #d4dbd5;
+    width: 100%;
+  }
 }

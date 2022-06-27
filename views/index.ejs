@@ -20,6 +20,9 @@
   <body>
     <!-- Left Side Bar Section Display Area -->
     <section class="sideBar">
+      <section class="hamburgerBtn">
+        <i class="fa-solid fa-bars"></i>
+      </section>
       <!-- Profile Info (Picture, Name, Email) -->
       <section class="profileArea">
         <img
@@ -100,9 +103,9 @@
             <p class="bookTitle"><%= booksData[0].bookTitle %></p>
             <p class="bookAuthor"><%= booksData[0].bookAuthors %></p>
           </section>
-          <i class="fa-solid fa-heart likeBookItemBtns"></i>
+          <i class="fa-solid fa-heart likeBookItemBtns" title="Favorite this book"></i>
           <a class="editBookItemBtn" href="#<%= booksData[0].bookId %>">Edit</a>
-          <i class="fa-solid fa-check completeBookItem"></i>
+          <i class="fa-solid fa-check completeBookItem" title="Mark book as completed"></i>
 
           <section id="<%= booksData[0].bookId %>" class="modal">
             <section class="modal__content">
@@ -142,9 +145,9 @@
             <p class="bookTitle"><%= booksData[i].bookTitle %></p>
             <p class="bookAuthor"><%= booksData[i].bookAuthors %></p>
           </section>
-          <i class="fa-solid fa-heart likeBookItemBtns"></i>
+          <i class="fa-solid fa-heart likeBookItemBtns" title="Favorite this book"></i>
           <a class="editBookItemBtn" href="#<%= booksData[i].bookId %>">Edit</a>
-          <i class="fa-solid fa-delete-left removeBookItemBtns"></i>
+          <i class="fa-solid fa-delete-left removeBookItemBtns" title="Remove book from playlist"></i>
 
           <!-- Add books modal details -->
           <section id="<%= booksData[i].bookId %>" class="modal">
