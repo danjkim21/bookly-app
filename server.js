@@ -28,8 +28,8 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then((client)
   collection = db.collection('books');
 });
 
-// ====== CRUD ====== //
-// Return Homepage on '/'
+// ====== CRUD Framework ====== //
+// == GET == index.ejs Homepage on '/'
 app.get('/', async (request, response) => {
   db.collection('books')
     .find()
@@ -41,7 +41,19 @@ app.get('/', async (request, response) => {
     .catch((error) => console.error(error));
 });
 
-// Add new books to MongoDB on '/addBook' from inputbtn (see main.js)
+// == GET == Return completed-books.ejs on '/completed'
+app.get('/completed', async (request, response) => {
+  db.collection('books')
+    .find()
+    .toArray()
+    .then((data) => {
+      response.render('completed-books.ejs', { booksData: data });
+      response.redirect('/completed');
+    })
+    .catch((error) => console.error(error));
+});
+
+// == POST == Add new books to MongoDB on '/addBook' from inputbtn (see main.js)
 app.post('/addBook', (req, res) => {
   db.collection('books')
     .insertOne({
@@ -61,17 +73,18 @@ app.post('/addBook', (req, res) => {
     });
 });
 
+// == DELETE == Remove selected book from MongoDB on '/rmBook' from removeBookItemBtns (see main.js)
+app.delete('/rmBook', (request, response) => {
+  db.collection('books')
+    .deleteOne({ bookId: request.body.bookId })
+    .then((result) => {
+      console.log('Book Deleted');
+      response.json('Book Deleted');
+    })
+    .catch((error) => console.error(error));
+});
+
+// Listen on server PORT 
 app.listen(PORT, () => {
   console.log(`Server is running on port`);
 });
-
-// Remove selected book from MongoDB on '/rmBook' from removeBookItemBtns (see main.js)
-app.delete('/rmBook', (request, response) => {
-  db.collection('books').deleteOne({bookId: request.body.bookId})
-  .then(result => {
-      console.log('Book Deleted')
-      response.json('Book Deleted')
-  })
-  .catch(error => console.error(error))
-
-})

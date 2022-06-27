@@ -135,7 +135,8 @@ body {
   cursor: pointer;
 }
 .removeBookItemBtns:hover,
-.completeBookItem:hover {
+.completeBookItem:hover,
+.modal__close:hover {
   cursor: pointer;
   color: #68d668dc;
 }
@@ -216,11 +217,13 @@ body {
   z-index: 0;
 }
 .modal__close {
+  font-size: 1.5rem;
   position: absolute;
   top: 10px;
   right: 10px;
   color: #ffffff;
   text-decoration: none;
+  transition: all ease-in-out 75ms;
 }
 .editBookSummaryMain {
   align-items: center;
@@ -269,7 +272,7 @@ body {
 
 .itemTitle {
   font-weight: 600;
-  font-size: 0.90rem;
+  font-size: 0.9rem;
   margin: 0.25rem 0;
   padding: 0 0.35rem;
 

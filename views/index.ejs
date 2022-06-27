@@ -36,8 +36,8 @@
       <nav class="navContent">
         <ul class="navList">
           <li class="navListItems"><a href="#">Search</a></li>
-          <li class="navListItems active"><a href="#">Books</a></li>
-          <li class="navListItems"><a href="#">Completed</a></li>
+          <li class="navListItems active"><a href="/">Books</a></li>
+          <li class="navListItems"><a href="/completed">Completed</a></li>
           <li class="navListItems"><a href="#">Settings</a></li>
         </ul>
       </nav>
@@ -89,38 +89,34 @@
       <section class="ActiveBookArea">
         <h2 class="sectionTitle">Now playing</h2>
 
-        <!-- Demo Book 1 -->
-        <section class="bookItem flexBox">
+        <!-- Active Book -->
+        <section class="bookItem flexBox" data-id="<%= booksData[0].bookId %>">
           <img
-            src="images/headshot copy.jpeg"
+            src="<%= booksData[0].bookImage %>"
             alt="book cover image"
             class="bookCoverImage"
           />
           <section class="bookInfo">
-            <p class="bookTitle">Book Name</p>
-            <p class="bookAuthor">Book Author</p>
+            <p class="bookTitle"><%= booksData[0].bookTitle %></p>
+            <p class="bookAuthor"><%= booksData[0].bookAuthors %></p>
           </section>
-          <a class="editBookItemBtn" href="#editBookModal">Edit</a>
+          <a class="editBookItemBtn" href="#<%= booksData[0].bookId %>">Edit</a>
           <i class="fa-solid fa-check completeBookItem"></i>
 
-          <section id="editBookModal" class="modal">
+          <section id="<%= booksData[0].bookId %>" class="modal">
             <section class="modal__content">
               <section class="editBookSummaryMain flexBox">
                 <img
-                  src="images/headshot copy.jpeg"
+                  src="<%= booksData[0].bookImage %>"
                   alt="book cover image"
                   class="bookCoverImage"
                 />
                 <section class="editBookInfo">
-                  <p class="bookTitle">Book Name</p>
-                  <p class="bookAuthor">Book Author</p>
+                  <p class="bookTitle"><%= booksData[0].bookTitle %></p>
+                  <p class="bookAuthor"><%= booksData[0].bookAuthors %></p>
                 </section>
               </section>
-              <p class="bookDescription">
-                Book description ... Lorem ipsum dolor, sit amet consectetur adipisicing
-                elit. Ipsa, molestias eos sunt sapiente esse excepturi eaque est saepe
-                officia.
-              </p>
+              <p class="bookDescription"><%= booksData[0].bookDescription %></p>
               <a href="#" class="modal__close">&times;</a>
             </section>
           </section>
@@ -132,34 +128,42 @@
         <h2 class="sectionTitle">Next up</h2>
 
         <!-- Loop through book entries-->
-        <% booksData.map(elem => { %>
-        <section class="bookItem flexBox" data-id="<%= elem.bookId %>">
+        <% for(let i=1; i < booksData.length; i++) { %>
+        <section class="bookItem flexBox" data-id="<%= booksData[i].bookId %>">
           <!-- Add books image -->
-          <img src="<%= elem.bookImage %>" alt="book cover image" class="bookCoverImage" />
+          <img
+            src="<%= booksData[i].bookImage %>"
+            alt="book cover image"
+            class="bookCoverImage"
+          />
           <!-- Add books title & authors -->
           <section class="bookInfo">
-            <p class="bookTitle"><%= elem.bookTitle %></p>
-            <p class="bookAuthor"><%= elem.bookAuthors %></p>
+            <p class="bookTitle"><%= booksData[i].bookTitle %></p>
+            <p class="bookAuthor"><%= booksData[i].bookAuthors %></p>
           </section>
-          <a class="editBookItemBtn" href="#<%= elem.bookId %>">Edit</a>
+          <a class="editBookItemBtn" href="#<%= booksData[i].bookId %>">Edit</a>
           <i class="fa-solid fa-delete-left removeBookItemBtns"></i>
 
           <!-- Add books modal details -->
-          <section id="<%= elem.bookId %>" class="modal">
+          <section id="<%= booksData[i].bookId %>" class="modal">
             <section class="modal__content">
               <section class="editBookSummaryMain flexBox">
-                <img src="<%= elem.bookImage %>" alt="book cover image" class="bookCoverImage" />
+                <img
+                  src="<%= booksData[i].bookImage %>"
+                  alt="book cover image"
+                  class="bookCoverImage"
+                />
                 <section class="editBookInfo">
-                  <p class="bookTitle"><%= elem.bookTitle %></p>
-                  <p class="bookAuthor"><%= elem.bookAuthors %></p>
+                  <p class="bookTitle"><%= booksData[i].bookTitle %></p>
+                  <p class="bookAuthor"><%= booksData[i].bookAuthors %></p>
                 </section>
               </section>
-              <p class="bookDescription"><%= elem.bookDescription %></p>
+              <p class="bookDescription"><%= booksData[i].bookDescription %></p>
               <a href="#" class="modal__close">&times;</a>
             </section>
           </section>
         </section>
-        <% }) %>
+        <% } %>
       </section>
     </main>
 
