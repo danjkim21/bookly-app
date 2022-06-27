@@ -92,7 +92,7 @@
         <!-- Active Book -->
         <section class="bookItem flexBox" data-id="<%= booksData[0].bookId %>">
           <img
-            src="<%= booksData[0].bookImage %>"
+            src="<%= 'https://' + booksData[0].bookImage.split('//')[1] %>"
             alt="book cover image"
             class="bookCoverImage"
           />
@@ -107,7 +107,7 @@
             <section class="modal__content">
               <section class="editBookSummaryMain flexBox">
                 <img
-                  src="<%= booksData[0].bookImage %>"
+                  src="<%= 'https://' + booksData[0].bookImage.split('//')[1] %>"
                   alt="book cover image"
                   class="bookCoverImage"
                 />
@@ -132,7 +132,7 @@
         <section class="bookItem flexBox" data-id="<%= booksData[i].bookId %>">
           <!-- Add books image -->
           <img
-            src="<%= booksData[i].bookImage %>"
+            src="<%= 'https://' + booksData[i].bookImage.split('//')[1] %>"
             alt="book cover image"
             class="bookCoverImage"
           />
@@ -149,7 +149,7 @@
             <section class="modal__content">
               <section class="editBookSummaryMain flexBox">
                 <img
-                  src="<%= booksData[i].bookImage %>"
+                  src="<%= 'https://' + booksData[0].bookImage.split('//')[1] %>"
                   alt="book cover image"
                   class="bookCoverImage"
                 />

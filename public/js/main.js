@@ -78,7 +78,7 @@ async function suggestionsListListeners(bookSearchResults) {
 
 // ========= CRUD main.js <--> server.js connections ========= //
 
-// Send new book data to MongoDB on POST (see server.js)
+// == POST == Send new book data to MongoDB on POST (see server.js)
 async function addBook(clickedBookItem) {
   const bookId = clickedBookItem[0].id;
   const bookTitle = clickedBookItem[0].volumeInfo.title;
@@ -109,13 +109,14 @@ async function addBook(clickedBookItem) {
   }
 }
 
-// Remove selected book from MongoDB on '/rmBook' on DELETE (see server.js)
+// == DELETE ==  Remove selected book from MongoDB on '/rmBook' on DELETE (see server.js)
+// Add event listeners on all rbBookItemBtns
 const rmBookBtn = document.querySelectorAll('.removeBookItemBtns');
-
 Array.from(rmBookBtn).forEach((elem) => {
   elem.addEventListener('click', rmBookItem);
 });
 
+// Get data-id attributes from rmBookBtns and remove from mongoDB database by bookId
 async function rmBookItem() {
   const bookId = this.parentNode.getAttribute('data-id');
 
@@ -127,7 +128,6 @@ async function rmBookItem() {
         bookId: bookId,
       }),
     });
-
     const data = await response.json();
     console.log(data);
     location.reload();
