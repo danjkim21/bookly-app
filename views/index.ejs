@@ -90,7 +90,7 @@
 
       <!-- Now Playing Playlist Section Area -->
       <section class="ActiveBookArea">
-        <h2 class="sectionTitle">Now playing</h2>
+        <h2 class="sectionTitle">Now reading</h2>
 
         <!-- Active Book -->
         <section class="bookItem flexBox" data-id="<%= booksData[0].bookId %>">
@@ -100,13 +100,14 @@
             class="bookCoverImage"
           />
           <section class="bookInfo">
-            <p class="bookTitle"><%= booksData[0].bookTitle %></p>
-            <p class="bookAuthor"><%= booksData[0].bookAuthors %></p>
+            <p class="bookTitle condenseText"><%= booksData[0].bookTitle %></p>
+            <p class="bookAuthor condenseText"><%= booksData[0].bookAuthors %></p>
           </section>
           <i class="fa-solid fa-heart likeBookItemBtns" title="Favorite this book"></i>
           <a class="editBookItemBtn" href="#<%= booksData[0].bookId %>">Edit</a>
           <i class="fa-solid fa-check completeBookItem" title="Mark book as completed"></i>
 
+          <!-- Active Book Modal -->
           <section id="<%= booksData[0].bookId %>" class="modal">
             <section class="modal__content">
               <section class="editBookSummaryMain flexBox">
@@ -142,8 +143,8 @@
           />
           <!-- Add books title & authors -->
           <section class="bookInfo">
-            <p class="bookTitle"><%= booksData[i].bookTitle %></p>
-            <p class="bookAuthor"><%= booksData[i].bookAuthors %></p>
+            <p class="bookTitle condenseText"><%= booksData[i].bookTitle %></p>
+            <p class="bookAuthor condenseText"><%= booksData[i].bookAuthors %></p>
           </section>
           <i class="fa-solid fa-heart likeBookItemBtns" title="Favorite this book"></i>
           <a class="editBookItemBtn" href="#<%= booksData[i].bookId %>">Edit</a>
@@ -154,7 +155,7 @@
             <section class="modal__content">
               <section class="editBookSummaryMain flexBox">
                 <img
-                  src="<%= 'https://' + booksData[0].bookImage.split('//')[1] %>"
+                  src="<%= 'https://' + booksData[i].bookImage.split('//')[1] %>"
                   alt="book cover image"
                   class="bookCoverImage"
                 />

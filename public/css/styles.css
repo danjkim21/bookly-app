@@ -106,7 +106,8 @@ body {
 }
 .bookCoverImage {
   height: 50px;
-  width: 50px;
+  min-width: 50px;
+  object-fit: cover;
   border-radius: 4px;
 }
 .bookInfo {
@@ -116,10 +117,20 @@ body {
 .bookTitle {
   font-weight: 600;
   margin-bottom: 0.25rem;
+
+  width: 30vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .bookAuthor {
   color: #bbc1bb;
   margin-top: 0.25rem;
+
+  width: 30vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /******************************************
@@ -190,6 +201,7 @@ body {
   visibility: hidden;
 }
 .hamburgerBtn {
+  font-size: 1.25rem;
   display: none;
   transition: all ease-in-out 75ms;
 }
@@ -341,11 +353,14 @@ body {
     left: 20px;
     padding: 0.5rem 0.5rem;
   }
-  .profileArea {
-    visibility: hidden;
-  }
+  .profileArea,
   .navContent {
     visibility: hidden;
+  }
+
+  .bookTitle,
+  .bookAuthor {
+    width: 40vw;
   }
 }
 /* Smaller screens - turn side bar into hamburger btn */
@@ -372,9 +387,22 @@ body {
     margin-left: 0;
     padding: 2.5rem 1.25rem 1.5rem 1.25rem;
   }
+  .playlistDescription {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 475px) {
+  .bookTitle.condenseText,
+  .bookAuthor.condenseText {
+    width: 33.5vw;
+  }
+  .bookCoverImage {
+    height: 37.5px;
+    min-width: 37.5px;
+  }
 }
 /* Fixes addbookBTN overflow */
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 395px) {
   .playlistInfoArea {
     width: 100%;
     display: block;
@@ -383,8 +411,8 @@ body {
   .addBookBtn {
     width: 75%;
   }
-  .playlistDescription {
-    color: #d4dbd5;
-    width: 100%;
+  .bookTitle.condenseText,
+  .bookAuthor.condenseText {
+    width: 30vw;
   }
 }
