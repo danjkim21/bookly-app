@@ -123,10 +123,12 @@ Array.from(favoriteBookBtn).forEach((elem) => {
   elem.addEventListener('click', toggleFavoriteBookItem);
 
   // Immediately show books that are favorited/not favorited
-  if (elem.parentNode.getAttribute('data-isFavorited') === 'true') {
+  if (elem.getAttribute('data-isFavorited') === 'true') {
+    elem.style.color = '#63da63dc';
     elem.classList.add('visible');
     elem.classList.remove('invisible');
-  } else if (elem.parentNode.getAttribute('data-isFavorited') === 'false') {
+  } else if (elem.getAttribute('data-isFavorited') === 'false') {
+    elem.style.color = 'white';
     elem.classList.add('invisible');
     elem.classList.remove('visible');
   }
@@ -149,8 +151,10 @@ async function toggleFavoriteBookItem() {
       const data = await response.json();
       console.log(data);
 
+      this.style.color = '#63da63dc';
       this.classList.add('visible');
       this.classList.remove('invisible');
+      location.reload();
     } catch (err) {
       console.error(err);
       res.sendStatus(500);
@@ -169,8 +173,65 @@ async function toggleFavoriteBookItem() {
       const data = await response.json();
       console.log(data);
 
+      this.style.color = 'white';
       this.classList.add('invisible');
       this.classList.remove('visible');
+      location.reload();
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+      return;
+    }
+  }
+}
+
+// == UPDATE == Adds/removes a book from Completed List on '/markCompleted' or '/markIncompleted' (see server.js)
+const markCompleteBtns = document.querySelectorAll('.completeBookItem');
+Array.from(markCompleteBtns).forEach((elem) => {
+  elem.addEventListener('click', markBookCompleted);
+
+  // Immediately show if book is completed or not (green or white)
+  if (elem.getAttribute('data-isCompleted') === 'true') {
+    elem.style.color = '#63da63dc';
+  } else if (elem.getAttribute('data-isCompleted') === 'false') {
+    elem.style.color = 'white';
+  }
+});
+
+async function markBookCompleted() {
+  const bookId = this.getAttribute('data-id');
+
+  // if book is not completed -> mark book as complete in the mongoDB database
+  if (this.getAttribute('data-isCompleted') === 'false') {
+    try {
+      const response = await fetch('markCompleted', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bookId: bookId,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      location.reload();
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+      return;
+    }
+    // if book is already completed -> mark book as incomplete in the mongoDB database
+  } else if (this.getAttribute('data-isCompleted') === 'true') {
+    try {
+      const response = await fetch('markIncompleted', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bookId: bookId,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+      location.reload();
     } catch (err) {
       console.error(err);
       res.sendStatus(500);

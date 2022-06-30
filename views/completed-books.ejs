@@ -61,8 +61,99 @@
       <section>
         
       </section>
+
+      <!-- ********** TEST AREA ********** -->
+      <section class="bookPlaylistArea">
+        <!-- Loop through book entries-->
+        <% booksData.filter(elem => elem.isCompleted).map(elem => { %>
+        <section
+          class="bookItem flexBox"
+          data-id="<%= elem.bookId %>"
+          data-isFavorited="<%= elem.isFavorited %>"
+          data-isCompleted="<%= elem.isCompleted %>"
+        >
+          <!-- Add books image -->
+          <img
+            src="<%= 'https://' + elem.bookImage.split('//')[1] %>"
+            alt="book cover image"
+            class="bookCoverImage"
+          />
+          <!-- Add books title & authors -->
+          <section class="bookInfo">
+            <p class="bookTitle condenseText"><%= elem.bookTitle %></p>
+            <p class="bookAuthor condenseText"><%= elem.bookAuthors %></p>
+          </section>
+          <i
+            class="fa-solid fa-heart likeBookItemBtns invisible"
+            title="Favorite this book"
+            data-id="<%= elem.bookId %>"
+            data-isFavorited="<%= elem.isFavorited %>"
+          ></i>
+          <a class="editBookItemBtn" href="#<%= elem.bookId %>">Info</a>
+
+          <!-- Add books modal details -->
+          <section id="<%= elem.bookId %>" class="modal">
+            <section class="modal__content">
+              <section class="editBookSummaryMain flexBox">
+                <img
+                  src="<%= 'https://' + elem.bookImage.split('//')[1] %>"
+                  alt="book cover image"
+                  class="bookCoverImage"
+                />
+                <section class="editBookInfo">
+                  <p class="bookTitle"><%= elem.bookTitle %></p>
+                  <p class="bookAuthor"><%= elem.bookAuthors %></p>
+
+                  <!-- NEED TO FIX --- Issue with Favorite button in Modal (invisible but still clickable in other modals) -->
+                  <span class="modalFavoriteBtn"
+                    ><i
+                      class="fa-solid fa-heart likeBookItemBtns invisible"
+                      title="Favorite this book"
+                      data-id="<%= elem.bookId %>"
+                      data-isFavorited="<%= elem.isFavorited %>"
+                    ></i
+                    >Favorite</span
+                  >
+                  <!-- ^ NEED TO FIX ^ -->
+                </section>
+              </section>
+              <section class="modalMoreBtns">
+                <!-- <span class="modalFavoriteBtn"
+                  ><i
+                    class="fa-solid fa-heart likeBookItemBtns invisible"
+                    title="Favorite this book"
+                    data-id="<%= elem.bookId %>"
+                    data-isFavorited="<%= elem.isFavorited %>"
+                  ></i
+                  >Favorite</span
+                > -->
+                <span class="modalCompleteBtn"
+                  ><i
+                    class="fa-solid fa-check completeBookItem"
+                    title="Mark book as completed"
+                    data-id="<%= elem.bookId %>"
+                    data-isCompleted="<%= elem.isCompleted %>"
+                  ></i
+                  >Completed on: <%= ` ${elem.completionDate.getMonth()}.${elem.completionDate.getDate()}.${elem.completionDate.getFullYear()}` %></span
+                >
+                <span class="modalDeleteBtn">
+                  <i
+                    class="fa-solid fa-trash removeBookItemBtns"
+                    title="Remove book from playlist"
+                    data-id="<%= elem.bookId %>"
+                  ></i
+                  >Delete
+                </span>
+              </section>
+              <p class="bookDescription"><%= elem.bookDescription %></p>
+              <a href="#" class="modal__close">&times;</a>
+            </section>
+          </section>
+        </section>
+        <% }); %>
+      </section>
     </main>
 
-    <!-- <script src="/js/main.js"></script> -->
+    <script src="/js/main.js"></script>
   </body>
 </html>

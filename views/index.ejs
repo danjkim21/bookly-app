@@ -95,45 +95,45 @@
         <!-- Active Book -->
         <section
           class="bookItem flexBox"
-          data-id="<%= booksData[0].bookId %>"
-          data-isFavorited="<%= booksData[0].isFavorited %>"
-          data-isCompleted="<%= booksData[0].isCompleted %>"
+          data-id="<%= booksData.filter(elem => !elem.isCompleted)[0].bookId %>"
+          data-isFavorited="<%= booksData.filter(elem => !elem.isCompleted)[0].isFavorited %>"
+          data-isCompleted="<%= booksData.filter(elem => !elem.isCompleted)[0].isCompleted %>"
         >
           <img
-            src="<%= 'https://' + booksData[0].bookImage.split('//')[1] %>"
+            src="<%= 'https://' + booksData.filter(elem => !elem.isCompleted)[0].bookImage.split('//')[1] %>"
             alt="book cover image"
             class="bookCoverImage"
           />
           <section class="bookInfo">
-            <p class="bookTitle condenseText"><%= booksData[0].bookTitle %></p>
-            <p class="bookAuthor condenseText"><%= booksData[0].bookAuthors %></p>
+            <p class="bookTitle condenseText"><%= booksData.filter(elem => !elem.isCompleted)[0].bookTitle %></p>
+            <p class="bookAuthor condenseText"><%= booksData.filter(elem => !elem.isCompleted)[0].bookAuthors %></p>
           </section>
           <i
             class="fa-solid fa-heart likeBookItemBtns invisible"
             title="Favorite this book"
-            data-id="<%= booksData[0].bookId %>"
-            data-isFavorited="<%= booksData[0].isFavorited %>"
+            data-id="<%= booksData.filter(elem => !elem.isCompleted)[0].bookId %>"
+            data-isFavorited="<%= booksData.filter(elem => !elem.isCompleted)[0].isFavorited %>"
           ></i>
-          <a class="editBookItemBtn" href="#<%= booksData[0].bookId %>">Info</a>
+          <a class="editBookItemBtn" href="#<%= booksData.filter(elem => !elem.isCompleted)[0].bookId %>">Info</a>
 
           <!-- Active Book Modal -->
-          <section id="<%= booksData[0].bookId %>" class="modal">
+          <section id="<%= booksData.filter(elem => !elem.isCompleted)[0].bookId %>" class="modal">
             <section class="modal__content">
               <section class="editBookSummaryMain flexBox">
                 <img
-                  src="<%= 'https://' + booksData[0].bookImage.split('//')[1] %>"
+                  src="<%= 'https://' + booksData.filter(elem => !elem.isCompleted)[0].bookImage.split('//')[1] %>"
                   alt="book cover image"
                   class="bookCoverImage"
                 />
                 <section class="editBookInfo">
-                  <p class="bookTitle"><%= booksData[0].bookTitle %></p>
-                  <p class="bookAuthor"><%= booksData[0].bookAuthors %></p>
+                  <p class="bookTitle"><%= booksData.filter(elem => !elem.isCompleted)[0].bookTitle %></p>
+                  <p class="bookAuthor"><%= booksData.filter(elem => !elem.isCompleted)[0].bookAuthors %></p>
                   <span class="modalFavoriteBtn"
                     ><i
                       class="fa-solid fa-heart likeBookItemBtns invisible"
                       title="Favorite this book"
-                      data-id="<%= booksData[0].bookId %>"
-                      data-isFavorited="<%= booksData[0].isFavorited %>"
+                      data-id="<%= booksData.filter(elem => !elem.isCompleted)[0].bookId %>"
+                      data-isFavorited="<%= booksData.filter(elem => !elem.isCompleted)[0].isFavorited %>"
                     ></i
                     >Favorite</span
                   >
@@ -144,8 +144,8 @@
                   ><i
                     class="fa-solid fa-check completeBookItem"
                     title="Mark book as completed"
-                    data-id="<%= booksData[0].bookId %>"
-                    data-isCompleted="<%= booksData[0].isCompleted %>"
+                    data-id="<%= booksData.filter(elem => !elem.isCompleted)[0].bookId %>"
+                    data-isCompleted="<%= booksData.filter(elem => !elem.isCompleted)[0].isCompleted %>"
                   ></i
                   >Mark As Read</span
                 >
@@ -153,12 +153,12 @@
                   <i
                     class="fa-solid fa-trash removeBookItemBtns"
                     title="Remove book from playlist"
-                    data-id="<%= booksData[0].bookId %>"
+                    data-id="<%= booksData.filter(elem => !elem.isCompleted)[0].bookId %>"
                   ></i
                   >Delete
                 </span>
               </section>
-              <p class="bookDescription"><%= booksData[0].bookDescription %></p>
+              <p class="bookDescription"><%= booksData.filter(elem => !elem.isCompleted)[0].bookDescription %></p>
               <a href="#" class="modal__close">&times;</a>
             </section>
           </section>
@@ -170,53 +170,56 @@
         <h2 class="sectionTitle">Next up</h2>
 
         <!-- Loop through book entries-->
-        <% for(let i=1; i < booksData.length; i++) { %>
+        <% booksData.filter(elem => !elem.isCompleted).slice(1).map(elem => { %>
         <section
           class="bookItem flexBox"
-          data-id="<%= booksData[i].bookId %>"
-          data-isFavorited="<%= booksData[i].isFavorited %>"
-          data-isCompleted="<%= booksData[i].isCompleted %>"
+          data-id="<%= elem.bookId %>"
+          data-isFavorited="<%= elem.isFavorited %>"
+          data-isCompleted="<%= elem.isCompleted %>"
         >
           <!-- Add books image -->
           <img
-            src="<%= 'https://' + booksData[i].bookImage.split('//')[1] %>"
+            src="<%= 'https://' + elem.bookImage.split('//')[1] %>"
             alt="book cover image"
             class="bookCoverImage"
           />
           <!-- Add books title & authors -->
           <section class="bookInfo">
-            <p class="bookTitle condenseText"><%= booksData[i].bookTitle %></p>
-            <p class="bookAuthor condenseText"><%= booksData[i].bookAuthors %></p>
+            <p class="bookTitle condenseText"><%= elem.bookTitle %></p>
+            <p class="bookAuthor condenseText"><%= elem.bookAuthors %></p>
           </section>
           <i
             class="fa-solid fa-heart likeBookItemBtns invisible"
             title="Favorite this book"
-            data-id="<%= booksData[i].bookId %>"
-            data-isFavorited="<%= booksData[i].isFavorited %>"
+            data-id="<%= elem.bookId %>"
+            data-isFavorited="<%= elem.isFavorited %>"
           ></i>
-          <a class="editBookItemBtn" href="#<%= booksData[i].bookId %>">Info</a>
+          <a class="editBookItemBtn" href="#<%= elem.bookId %>">Info</a>
 
           <!-- Add books modal details -->
-          <section id="<%= booksData[i].bookId %>" class="modal">
+          <section id="<%= elem.bookId %>" class="modal">
             <section class="modal__content">
               <section class="editBookSummaryMain flexBox">
                 <img
-                  src="<%= 'https://' + booksData[i].bookImage.split('//')[1] %>"
+                  src="<%= 'https://' + elem.bookImage.split('//')[1] %>"
                   alt="book cover image"
                   class="bookCoverImage"
                 />
                 <section class="editBookInfo">
-                  <p class="bookTitle"><%= booksData[i].bookTitle %></p>
-                  <p class="bookAuthor"><%= booksData[i].bookAuthors %></p>
+                  <p class="bookTitle"><%= elem.bookTitle %></p>
+                  <p class="bookAuthor"><%= elem.bookAuthors %></p>
+
+                  <!-- NEED TO FIX --- Issue with Favorite button in Modal (invisible but still clickable in other modals) -->
                   <span class="modalFavoriteBtn"
                     ><i
                       class="fa-solid fa-heart likeBookItemBtns invisible"
                       title="Favorite this book"
-                      data-id="<%= booksData[i].bookId %>"
-                      data-isFavorited="<%= booksData[i].isFavorited %>"
+                      data-id="<%= elem.bookId %>"
+                      data-isFavorited="<%= elem.isFavorited %>"
                     ></i
                     >Favorite</span
                   >
+                  <!-- ^ NEED TO FIX ^ -->
                 </section>
               </section>
               <section class="modalMoreBtns">
@@ -224,8 +227,8 @@
                   ><i
                     class="fa-solid fa-check completeBookItem"
                     title="Mark book as completed"
-                    data-id="<%= booksData[i].bookId %>"
-                    data-isCompleted="<%= booksData[i].isCompleted %>"
+                    data-id="<%= elem.bookId %>"
+                    data-isCompleted="<%= elem.isCompleted %>"
                   ></i
                   >Mark As Read</span
                 >
@@ -233,17 +236,17 @@
                   <i
                     class="fa-solid fa-trash removeBookItemBtns"
                     title="Remove book from playlist"
-                    data-id="<%= booksData[i].bookId %>"
+                    data-id="<%= elem.bookId %>"
                   ></i
                   >Delete
                 </span>
               </section>
-              <p class="bookDescription"><%= booksData[i].bookDescription %></p>
+              <p class="bookDescription"><%= elem.bookDescription %></p>
               <a href="#" class="modal__close">&times;</a>
             </section>
           </section>
         </section>
-        <% } %>
+        <% }); %>
       </section>
     </main>
 

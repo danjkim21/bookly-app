@@ -47,6 +47,7 @@ app.get('/completed', async (request, response) => {
   try {
     db.collection('books')
       .find()
+      .sort({completionDate: -1})
       .toArray()
       .then((data) => {
         response.render('completed-books.ejs', { booksData: data });
@@ -105,7 +106,7 @@ app.post('/addFavorite', async (request, response) => {
   }
 });
 
-// == UPDATE == Removes a book from favorites (isFavorited = true) on '/rmFavorite' when clicking the favorite icon (see main.js)
+// == UPDATE == Removes a book from favorites (isFavorited = false) on '/rmFavorite' when clicking the favorite icon (see main.js)
 app.post('/rmFavorite', async (request, response) => {
   try {
     db.collection('books')
@@ -119,8 +120,56 @@ app.post('/rmFavorite', async (request, response) => {
         { upsert: true }
       )
       .then((result) => {
-        console.log(`${request.body.bookTitle} - Removed from Favorites`);
-        response.json(`${request.body.bookTitle} - Removed from Favorites`);
+        console.log(`${request.body.bookId} - Removed from Favorites`);
+        response.json(`${request.body.bookId} - Removed from Favorites`);
+      });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+    return;
+  }
+});
+
+// == UPDATE == Marks a book Completed (isCompleted = true) on '/markCompleted' when clicking Mark as Read (see main.js)
+app.post('/markCompleted', async (request, response) => {
+  try {
+    db.collection('books')
+      .updateOne(
+        { bookId: request.body.bookId },
+        {
+          $set: {
+            isCompleted: true,
+            completionDate: new Date(),
+          },
+        },
+        { upsert: true }
+      )
+      .then((result) => {
+        console.log(`${request.body.bookId} - Marked Complete`);
+        response.json(`${request.body.bookId} - Marked Complete`);
+      });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+    return;
+  }
+});
+
+// == UPDATE == Marks a book Incompleted (isCompleted = false) on '/markIncompleted' when clicking  Mark as Read (see main.js)
+app.post('/markIncompleted', async (request, response) => {
+  try {
+    db.collection('books')
+      .updateOne(
+        { bookId: request.body.bookId },
+        {
+          $set: {
+            isCompleted: false,
+            completionDate: null,
+          },
+        },
+        { upsert: true }
+      )
+      .then((result) => {
+        console.log(`${request.body.bookId} - Marked Incomplete`);
+        response.json(`${request.body.bookId} - Marked Incomplete`);
       });
   } catch (error) {
     response.status(500).send({ message: error.message });
