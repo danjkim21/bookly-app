@@ -96,6 +96,11 @@ My biggest take away is how powerful JavaScript is as a language. Prior to this 
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 
+<!-- LICENSE -->
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
 <!-- CONTACT -->
 
 ## Contact
