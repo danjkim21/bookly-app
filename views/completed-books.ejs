@@ -20,6 +20,9 @@
   <body>
     <!-- Left Side Bar Section Display Area -->
     <section class="sideBar">
+      <section class="hamburgerBtn">
+        <i class="fa-solid fa-bars"></i>
+      </section>
       <!-- Profile Info (Picture, Name, Email) -->
       <section class="profileArea">
         <img
@@ -58,9 +61,7 @@
         numquam atque optio mollitia odio modi!
       </p>
 
-      <section>
-        
-      </section>
+      <section></section>
 
       <!-- ********** TEST AREA ********** -->
       <section class="bookPlaylistArea">
@@ -134,7 +135,9 @@
                     data-id="<%= elem.bookId %>"
                     data-isCompleted="<%= elem.isCompleted %>"
                   ></i
-                  >Completed on: <%= ` ${elem.completionDate.getMonth()}.${elem.completionDate.getDate()}.${elem.completionDate.getFullYear()}` %></span
+                  >Completed on: <%= `
+                  ${elem.completionDate.getMonth()}.${elem.completionDate.getDate()}.${elem.completionDate.getFullYear()}`
+                  %></span
                 >
                 <span class="modalDeleteBtn">
                   <i

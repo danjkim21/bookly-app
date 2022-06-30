@@ -357,18 +357,6 @@ body {
   width: 420px;
 }
 
-/* General Hidden Class Setup */
-.hidden {
-  display: none;
-}
-/* General Visibile Class Setup */
-.visible {
-  visibility: visible;
-}
-.invisible {
-  visibility: hidden;
-}
-
 /* Media Queries - Mobile Responsiveness */
 /* Med-Large size screens */
 @media screen and (max-width: 1000px) {
@@ -397,7 +385,6 @@ body {
   .navContent {
     visibility: hidden;
   }
-
   .bookTitle,
   .bookAuthor {
     width: 50vw;
@@ -458,4 +445,22 @@ body {
   .addBookBtn {
     width: 75%;
   }
+}
+
+/* General Hidden Class Setup */
+.hidden {
+  display: none;
+}
+/* General Visibile Class Setup */
+.visible {
+  visibility: visible;
+}
+.invisible {
+  visibility: hidden;
+}
+/* General HamburgerBtn Toggle Class Open Setup */
+.open {
+  width: 72.5vw;
+  padding: 3rem 2.5rem 2.5rem 2.5rem;
+  background-color: rgba(127, 146, 131, 0.965);
 }

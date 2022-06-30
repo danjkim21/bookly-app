@@ -1,3 +1,17 @@
+// ========= On Mobile - Hamburger button Open & Close ========= //
+const hamburgerBtn = document.querySelector('.hamburgerBtn');
+hamburgerBtn.addEventListener('click', toggleSideBar);
+
+async function toggleSideBar() {
+  let sideBar = document.querySelector('.sideBar');
+  let profileArea = document.querySelector('.profileArea');
+  let navContent = document.querySelector('.navContent');
+
+  sideBar.classList.toggle('open');
+  profileArea.classList.toggle('visible');
+  navContent.classList.toggle('visible');
+}
+
 // ========= Fetch Google Books API JSON Data ========= //
 // GOOGLE API Docs - https://developers.google.com/books/docs/v1/using
 
