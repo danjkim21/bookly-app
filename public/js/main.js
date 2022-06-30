@@ -133,7 +133,7 @@ Array.from(favoriteBookBtn).forEach((elem) => {
 });
 
 async function toggleFavoriteBookItem() {
-  const bookId = this.parentNode.getAttribute('data-id');
+  const bookId = this.getAttribute('data-id');
   // console.log(this.parentNode.getAttribute('data-isFavorited'));
 
   // If the button is invisible (book not favorited) -> favorite book and add heart button
@@ -179,10 +179,6 @@ async function toggleFavoriteBookItem() {
   }
 }
 
-// function showFavoritedBooks() {
-
-// }
-
 // == DELETE ==  Remove selected book from MongoDB on '/rmBook' on DELETE (see server.js)
 // Add event listeners on all rbBookItemBtns
 const rmBookBtn = document.querySelectorAll('.removeBookItemBtns');
@@ -192,7 +188,7 @@ Array.from(rmBookBtn).forEach((elem) => {
 
 // Get data-id attributes from rmBookBtns and remove from mongoDB database by bookId
 async function rmBookItem() {
-  const bookId = this.parentNode.getAttribute('data-id');
+  const bookId = this.getAttribute('data-id');
 
   try {
     const response = await fetch('rmBook', {

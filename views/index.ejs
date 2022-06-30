@@ -62,7 +62,7 @@
           <!-- Pop-Up Modal Area -->
           <section id="addBookModal" class="modal">
             <section class="modal__content">
-              <h3>Add Book to Playlist</h3>
+              <h3 class="modalTitle">Add Book to Playlist</h3>
               <form action="">
                 <input
                   type="text"
@@ -111,12 +111,10 @@
           <i
             class="fa-solid fa-heart likeBookItemBtns invisible"
             title="Favorite this book"
+            data-id="<%= booksData[0].bookId %>"
+            data-isFavorited="<%= booksData[0].isFavorited %>"
           ></i>
-          <a class="editBookItemBtn" href="#<%= booksData[0].bookId %>">Edit</a>
-          <i
-            class="fa-solid fa-check completeBookItem"
-            title="Mark book as completed"
-          ></i>
+          <a class="editBookItemBtn" href="#<%= booksData[0].bookId %>">Info</a>
 
           <!-- Active Book Modal -->
           <section id="<%= booksData[0].bookId %>" class="modal">
@@ -130,7 +128,35 @@
                 <section class="editBookInfo">
                   <p class="bookTitle"><%= booksData[0].bookTitle %></p>
                   <p class="bookAuthor"><%= booksData[0].bookAuthors %></p>
+                  <span class="modalFavoriteBtn"
+                    ><i
+                      class="fa-solid fa-heart likeBookItemBtns invisible"
+                      title="Favorite this book"
+                      data-id="<%= booksData[0].bookId %>"
+                      data-isFavorited="<%= booksData[0].isFavorited %>"
+                    ></i
+                    >Favorite</span
+                  >
                 </section>
+              </section>
+              <section class="modalMoreBtns">
+                <span class="modalCompleteBtn"
+                  ><i
+                    class="fa-solid fa-check completeBookItem"
+                    title="Mark book as completed"
+                    data-id="<%= booksData[0].bookId %>"
+                    data-isCompleted="<%= booksData[0].isCompleted %>"
+                  ></i
+                  >Mark As Read</span
+                >
+                <span class="modalDeleteBtn">
+                  <i
+                    class="fa-solid fa-trash removeBookItemBtns"
+                    title="Remove book from playlist"
+                    data-id="<%= booksData[0].bookId %>"
+                  ></i
+                  >Delete
+                </span>
               </section>
               <p class="bookDescription"><%= booksData[0].bookDescription %></p>
               <a href="#" class="modal__close">&times;</a>
@@ -165,12 +191,10 @@
           <i
             class="fa-solid fa-heart likeBookItemBtns invisible"
             title="Favorite this book"
+            data-id="<%= booksData[i].bookId %>"
+            data-isFavorited="<%= booksData[i].isFavorited %>"
           ></i>
-          <a class="editBookItemBtn" href="#<%= booksData[i].bookId %>">Edit</a>
-          <i
-            class="fa-solid fa-delete-left removeBookItemBtns"
-            title="Remove book from playlist"
-          ></i>
+          <a class="editBookItemBtn" href="#<%= booksData[i].bookId %>">Info</a>
 
           <!-- Add books modal details -->
           <section id="<%= booksData[i].bookId %>" class="modal">
@@ -184,7 +208,35 @@
                 <section class="editBookInfo">
                   <p class="bookTitle"><%= booksData[i].bookTitle %></p>
                   <p class="bookAuthor"><%= booksData[i].bookAuthors %></p>
+                  <span class="modalFavoriteBtn"
+                    ><i
+                      class="fa-solid fa-heart likeBookItemBtns invisible"
+                      title="Favorite this book"
+                      data-id="<%= booksData[i].bookId %>"
+                      data-isFavorited="<%= booksData[i].isFavorited %>"
+                    ></i
+                    >Favorite</span
+                  >
                 </section>
+              </section>
+              <section class="modalMoreBtns">
+                <span class="modalCompleteBtn"
+                  ><i
+                    class="fa-solid fa-check completeBookItem"
+                    title="Mark book as completed"
+                    data-id="<%= booksData[i].bookId %>"
+                    data-isCompleted="<%= booksData[i].isCompleted %>"
+                  ></i
+                  >Mark As Read</span
+                >
+                <span class="modalDeleteBtn">
+                  <i
+                    class="fa-solid fa-trash removeBookItemBtns"
+                    title="Remove book from playlist"
+                    data-id="<%= booksData[i].bookId %>"
+                  ></i
+                  >Delete
+                </span>
               </section>
               <p class="bookDescription"><%= booksData[i].bookDescription %></p>
               <a href="#" class="modal__close">&times;</a>

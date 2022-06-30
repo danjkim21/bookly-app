@@ -101,7 +101,7 @@ body {
   padding: 0 1rem;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #bbc1bb;
+  /* border-bottom: 1px solid #bbc1bb; */
   transition: all ease-in-out 85ms;
 }
 .bookCoverImage {
@@ -241,7 +241,7 @@ body {
   max-width: 90%;
   height: 50vh;
   background: #6b8771;
-  padding: 1em 2em;
+  /* padding: 1em 1em; */
   z-index: 0;
 }
 .modal__close {
@@ -253,25 +253,60 @@ body {
   text-decoration: none;
   transition: all ease-in-out 75ms;
 }
+/* Book info specific Modal */
 .editBookSummaryMain {
-  align-items: center;
+  height: 125px;
+  padding: 1rem 1rem 0 1rem;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(245, 245, 245, 0.582);
 }
 .editBookInfo {
   padding-left: 1rem;
 }
+.editBookSummaryMain > .bookCoverImage {
+  height: 90px;
+  width: auto;
+  object-fit: initial;
+}
+.editBookSummaryMain .bookTitle {
+  margin-top: 0.55rem;
+  margin-bottom: 0.35rem;
+}
+.editBookSummaryMain .bookAuthor {
+  margin-bottom: 0.35rem;
+}
+.modalFavoriteBtn .likeBookItemBtns {
+  visibility: visible;
+  padding-right: 0.85rem;
+}
+.modalMoreBtns {
+  margin-top: 1.25rem;
+}
+.modalCompleteBtn {
+  padding-right: 0.55rem;
+}
+.modalCompleteBtn > i,
+.modalDeleteBtn > i {
+  padding-right: 0.75rem;
+}
 .bookDescription {
   font-size: 0.9rem;
-  max-height: 125px;
-  padding: 0.65rem;
+  line-height: 1.5;
+  max-height: 200px;
+  margin: 1.25rem;
   overflow-y: auto;
   border-radius: 4px;
-  background-color: #78967dc2;
+  /* background-color: #78967dc2; */
 }
 
 /* Autocomplete Suggestions Dropdown Modal */
+.modalTitle {
+  padding: 0 1rem;
+}
 .bookSearchInput {
-  width: 100%;
+  width: 90%;
   padding: 0.75rem 0;
+  margin: 0 5%;
   border: none;
   border-radius: 4px;
   z-index: 5;
@@ -281,6 +316,8 @@ body {
 }
 .suggestionsContainer {
   height: 265px;
+  width: 90%;
+  margin: 0 5%;
   position: relative;
   top: -25px;
   overflow-y: auto;
@@ -363,7 +400,7 @@ body {
 
   .bookTitle,
   .bookAuthor {
-    width: 40vw;
+    width: 50vw;
   }
 }
 /* Smaller screens - turn side bar into hamburger btn */
@@ -397,7 +434,7 @@ body {
 @media screen and (max-width: 475px) {
   .bookTitle.condenseText,
   .bookAuthor.condenseText {
-    width: 37.5vw;
+    width: 47.5vw;
   }
   .bookCoverImage {
     height: 37.5px;
@@ -409,6 +446,10 @@ body {
 }
 /* Fixes addbookBTN overflow */
 @media screen and (max-width: 395px) {
+  .bookTitle.condenseText,
+  .bookAuthor.condenseText {
+    width: 45.5vw;
+  }
   .playlistInfoArea {
     width: 100%;
     display: block;
