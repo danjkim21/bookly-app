@@ -28,6 +28,8 @@ async function fetchBooksData(searchInputResult) {
     suggestionsListListeners(bookSearchResults);
   } catch (err) {
     console.error(err);
+    res.sendStatus(500);
+    return;
   }
 }
 
@@ -52,6 +54,8 @@ async function writeToSuggestions(bookSearchResults) {
     suggestions.innerHTML = html.join('');
   } else {
     console.log('no results');
+    res.sendStatus(404);
+    return;
   }
 }
 
@@ -98,14 +102,70 @@ async function addBook(clickedBookItem) {
         bookPageCount: bookPageCount,
         bookDescription: bookDescription,
         bookImage: bookImage,
+        userRating: null,
+        isFavorited: false,
+        isCompleted: false,
       }),
     });
     const data = await response.json();
     console.log(data);
-    location.reload();
-    
+    window.location.replace('/');
   } catch (err) {
     console.error(err);
+    res.sendStatus(500);
+    return;
+  }
+}
+
+// == UPDATE == Adds/removes a book to favorites on '/addFavorite' or '/rmFavorite' (see server.js)
+const favoriteBookBtn = document.querySelectorAll('.likeBookItemBtns');
+Array.from(favoriteBookBtn).forEach((elem) => {
+  elem.addEventListener('click', toggleFavoriteBookItem);
+});
+
+async function toggleFavoriteBookItem() {
+  const bookId = this.parentNode.getAttribute('data-id');
+
+  // If the button is invisible (book not favorited) -> favorite book and add heart button
+  if (this.classList.contains('invisible')) {
+    try {
+      const response = await fetch('addFavorite', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bookId: bookId,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+
+      this.classList.add('visible');
+      this.classList.remove('invisible');
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+      return;
+    }
+  // If the button is visible (book favorited) -> unfavorite book and add remove heart button
+  } else if (this.classList.contains('visible')) {
+    try {
+      const response = await fetch('rmFavorite', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bookId: bookId,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+
+      this.classList.add('invisible');
+      this.classList.remove('visible');
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+      return;
+    }
   }
 }
 
@@ -131,8 +191,9 @@ async function rmBookItem() {
     const data = await response.json();
     console.log(data);
     location.reload();
-
   } catch (err) {
     console.error(err);
+    res.sendStatus(500);
+    return;
   }
 }

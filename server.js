@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const MongoClient = require('mongodb').MongoClient;
-const { response } = require('express');
 require('dotenv').config();
 
 // ====== Variables ====== //
@@ -14,13 +13,6 @@ let db,
   dbName = 'booklyPlaylists',
   collection;
 
-// ====== MiddleWare ====== //
-app.set('view engine', 'ejs');
-app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(cors());
-
 // ====== MongoDB connection ====== //
 MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then((client) => {
   console.log(`Connected to ${dbName} Database`);
@@ -28,63 +20,130 @@ MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then((client)
   collection = db.collection('books');
 });
 
+// ====== MiddleWare ====== //
+app.set('view engine', 'ejs');
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+
 // ====== CRUD Framework ====== //
 // == GET == index.ejs Homepage on '/'
 app.get('/', async (request, response) => {
-  db.collection('books')
-    .find()
-    .toArray()
-    .then((data) => {
-      response.render('index.ejs', { booksData: data });
-      response.redirect('/');
-    })
-    .catch((error) => console.error(error));
+  try {
+    db.collection('books')
+      .find()
+      .toArray()
+      .then((data) => {
+        response.render('index.ejs', { booksData: data });
+      });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
 });
 
 // == GET == Return completed-books.ejs on '/completed'
 app.get('/completed', async (request, response) => {
-  db.collection('books')
-    .find()
-    .toArray()
-    .then((data) => {
-      response.render('completed-books.ejs', { booksData: data });
-      response.redirect('/completed');
-    })
-    .catch((error) => console.error(error));
+  try {
+    db.collection('books')
+      .find()
+      .toArray()
+      .then((data) => {
+        response.render('completed-books.ejs', { booksData: data });
+      });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+    return;
+  }
 });
 
 // == POST == Add new books to MongoDB on '/addBook' from inputbtn (see main.js)
-app.post('/addBook', (req, res) => {
-  db.collection('books')
-    .insertOne({
-      bookId: req.body.bookId,
-      bookTitle: req.body.bookTitle,
-      bookAuthors: req.body.bookAuthors,
-      bookPageCount: req.body.bookPageCount,
-      bookDescription: req.body.bookDescription,
-      bookImage: req.body.bookImage,
-    })
-    .then((result) => {
-      console.log('Book Added');
-      response.redirect('/');
-    })
-    .catch((err) => {
-      console.error(err);
-    });
+app.post('/addBook', async (request, response) => {
+  try {
+    db.collection('books')
+      .insertOne({
+        bookId: request.body.bookId,
+        bookTitle: request.body.bookTitle,
+        bookAuthors: request.body.bookAuthors,
+        bookPageCount: request.body.bookPageCount,
+        bookDescription: request.body.bookDescription,
+        bookImage: request.body.bookImage,
+        userRating: request.body.userRating,
+        isFavorited: request.body.isFavorited,
+        isCompleted: request.body.isCompleted,
+      })
+      .then((result) => {
+        console.log(`${request.body.bookTitle} - Added to Playlist`);
+        response.json(`${request.body.bookTitle} - Added to Playlist`);
+      });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+    return;
+  }
+});
+
+// == UPDATE == Adds a book to Favorites (isFavorited = true) on '/addFavorite' when clicking the favorite icon (see main.js)
+app.post('/addFavorite', async (request, response) => {
+  try {
+    db.collection('books')
+      .updateOne(
+        { bookId: request.body.bookId },
+        {
+          $set: {
+            isFavorited: true,
+          },
+        },
+        { upsert: true }
+      )
+      .then((result) => {
+        console.log(`${request.body.bookTitle} - Added to Favorites`);
+        response.json(`${request.body.bookTitle} - Added to Favorites`);
+      });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+    return;
+  }
+});
+
+// == UPDATE == Removes a book from favorites (isFavorited = true) on '/rmFavorite' when clicking the favorite icon (see main.js)
+app.post('/rmFavorite', async (request, response) => {
+  try {
+    db.collection('books')
+      .updateOne(
+        { bookId: request.body.bookId },
+        {
+          $set: {
+            isFavorited: false,
+          },
+        },
+        { upsert: true }
+      )
+      .then((result) => {
+        console.log(`${request.body.bookTitle} - Removed from Favorites`);
+        response.json(`${request.body.bookTitle} - Removed from Favorites`);
+      });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+    return;
+  }
 });
 
 // == DELETE == Remove selected book from MongoDB on '/rmBook' from removeBookItemBtns (see main.js)
-app.delete('/rmBook', (request, response) => {
-  db.collection('books')
-    .deleteOne({ bookId: request.body.bookId })
-    .then((result) => {
-      console.log('Book Deleted');
-      response.json('Book Deleted');
-    })
-    .catch((error) => console.error(error));
+app.delete('/rmBook', async (request, response) => {
+  try {
+    db.collection('books')
+      .deleteOne({ bookId: request.body.bookId })
+      .then((result) => {
+        console.log(`${request.body.bookTitle} - Deleted`);
+        response.json(`${request.body.bookTitle} - Deleted`);
+      });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+    return;
+  }
 });
 
-// Listen on server PORT 
+// Listen on server PORT
 app.listen(PORT, () => {
   console.log(`Server is running on port`);
 });
