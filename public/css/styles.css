@@ -397,11 +397,14 @@ body {
 @media screen and (max-width: 475px) {
   .bookTitle.condenseText,
   .bookAuthor.condenseText {
-    width: 33.5vw;
+    width: 37.5vw;
   }
   .bookCoverImage {
     height: 37.5px;
     min-width: 37.5px;
+  }
+  .bookItem {
+    padding: 0 0;
   }
 }
 /* Fixes addbookBTN overflow */
@@ -413,9 +416,5 @@ body {
   }
   .addBookBtn {
     width: 75%;
-  }
-  .bookTitle.condenseText,
-  .bookAuthor.condenseText {
-    width: 30vw;
   }
 }

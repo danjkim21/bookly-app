@@ -121,10 +121,20 @@ async function addBook(clickedBookItem) {
 const favoriteBookBtn = document.querySelectorAll('.likeBookItemBtns');
 Array.from(favoriteBookBtn).forEach((elem) => {
   elem.addEventListener('click', toggleFavoriteBookItem);
+
+  // Immediately show books that are favorited/not favorited
+  if (elem.parentNode.getAttribute('data-isFavorited') === 'true') {
+    elem.classList.add('visible');
+    elem.classList.remove('invisible');
+  } else if (elem.parentNode.getAttribute('data-isFavorited') === 'false') {
+    elem.classList.add('invisible');
+    elem.classList.remove('visible');
+  }
 });
 
 async function toggleFavoriteBookItem() {
   const bookId = this.parentNode.getAttribute('data-id');
+  // console.log(this.parentNode.getAttribute('data-isFavorited'));
 
   // If the button is invisible (book not favorited) -> favorite book and add heart button
   if (this.classList.contains('invisible')) {
@@ -146,7 +156,7 @@ async function toggleFavoriteBookItem() {
       res.sendStatus(500);
       return;
     }
-  // If the button is visible (book favorited) -> unfavorite book and add remove heart button
+    // If the button is visible (book favorited) -> unfavorite book and add remove heart button
   } else if (this.classList.contains('visible')) {
     try {
       const response = await fetch('rmFavorite', {
@@ -168,6 +178,10 @@ async function toggleFavoriteBookItem() {
     }
   }
 }
+
+// function showFavoritedBooks() {
+
+// }
 
 // == DELETE ==  Remove selected book from MongoDB on '/rmBook' on DELETE (see server.js)
 // Add event listeners on all rbBookItemBtns

@@ -93,7 +93,12 @@
         <h2 class="sectionTitle">Now reading</h2>
 
         <!-- Active Book -->
-        <section class="bookItem flexBox" data-id="<%= booksData[0].bookId %>">
+        <section
+          class="bookItem flexBox"
+          data-id="<%= booksData[0].bookId %>"
+          data-isFavorited="<%= booksData[0].isFavorited %>"
+          data-isCompleted="<%= booksData[0].isCompleted %>"
+        >
           <img
             src="<%= 'https://' + booksData[0].bookImage.split('//')[1] %>"
             alt="book cover image"
@@ -103,9 +108,15 @@
             <p class="bookTitle condenseText"><%= booksData[0].bookTitle %></p>
             <p class="bookAuthor condenseText"><%= booksData[0].bookAuthors %></p>
           </section>
-          <i class="fa-solid fa-heart likeBookItemBtns invisible" title="Favorite this book"></i>
+          <i
+            class="fa-solid fa-heart likeBookItemBtns invisible"
+            title="Favorite this book"
+          ></i>
           <a class="editBookItemBtn" href="#<%= booksData[0].bookId %>">Edit</a>
-          <i class="fa-solid fa-check completeBookItem" title="Mark book as completed"></i>
+          <i
+            class="fa-solid fa-check completeBookItem"
+            title="Mark book as completed"
+          ></i>
 
           <!-- Active Book Modal -->
           <section id="<%= booksData[0].bookId %>" class="modal">
@@ -134,7 +145,12 @@
 
         <!-- Loop through book entries-->
         <% for(let i=1; i < booksData.length; i++) { %>
-        <section class="bookItem flexBox" data-id="<%= booksData[i].bookId %>">
+        <section
+          class="bookItem flexBox"
+          data-id="<%= booksData[i].bookId %>"
+          data-isFavorited="<%= booksData[i].isFavorited %>"
+          data-isCompleted="<%= booksData[i].isCompleted %>"
+        >
           <!-- Add books image -->
           <img
             src="<%= 'https://' + booksData[i].bookImage.split('//')[1] %>"
@@ -146,9 +162,15 @@
             <p class="bookTitle condenseText"><%= booksData[i].bookTitle %></p>
             <p class="bookAuthor condenseText"><%= booksData[i].bookAuthors %></p>
           </section>
-          <i class="fa-solid fa-heart likeBookItemBtns invisible" title="Favorite this book"></i>
+          <i
+            class="fa-solid fa-heart likeBookItemBtns invisible"
+            title="Favorite this book"
+          ></i>
           <a class="editBookItemBtn" href="#<%= booksData[i].bookId %>">Edit</a>
-          <i class="fa-solid fa-delete-left removeBookItemBtns" title="Remove book from playlist"></i>
+          <i
+            class="fa-solid fa-delete-left removeBookItemBtns"
+            title="Remove book from playlist"
+          ></i>
 
           <!-- Add books modal details -->
           <section id="<%= booksData[i].bookId %>" class="modal">
