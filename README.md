@@ -79,9 +79,11 @@ This API can be accessed via [https://bookly-crud-app.herokuapp.com/](https://bo
 
 ## Roadmap
 
-- [ ] 
-- [ ] Sorteable playlists (drag and drop and sort) feature
-- [ ] Completed books page
+- [x] Create books page displaying all finished books
+- [ ] Rate finished books and add book notes
+- [ ] Sorteable playlist (drag and drop and sort) feature
+- [ ] Create Discover books feature (Search Page)
+- [ ] Create multiple different playlists
 - [ ] Login 
 
 See the [open issues](https://github.com/danjkim21/adv-nuclear-reactor-api/issues) for a full list of proposed features (and known issues).
