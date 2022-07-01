@@ -40,8 +40,8 @@
         <ul class="navList">
           <li class="navListItems"><a href="/discover">Discover</a></li>
           <li class="navListItems"><a href="/">Books</a></li>
-          <li class="navListItems active"><a href="/completed">Completed</a></li>
-          <li class="navListItems"><a href="/favorites">Favorited</a></li>
+          <li class="navListItems"><a href="/completed">Completed</a></li>
+          <li class="navListItems active"><a href="/favorites">Favorited</a></li>
           <li class="navListItems"><a href="#">Settings</a></li>
         </ul>
       </nav>
@@ -52,12 +52,12 @@
       <!-- Playlist Display Area -->
       <section class="playlistInfoArea flexBox">
         <!-- App Feature Title - Playlist Area -->
-        <h1 class="appTitle">Completed Books</h1>
+        <h1 class="appTitle">Favorited Books</h1>
       </section>
 
       <!-- Completed Books Description Paragraph -->
       <p class="playlistDescription">
-        Completed books! description ... Lorem ipsum dolor sit, amet consectetur
+        Favorited books! description ... Lorem ipsum dolor sit, amet consectetur
         adipisicing elit. Hic, consequatur! Fugiat dicta asperiores quis suscipit iste
         numquam atque optio mollitia odio modi!
       </p>
@@ -67,7 +67,7 @@
       <!-- ********** TEST AREA ********** -->
       <section class="bookPlaylistArea">
         <!-- Loop through book entries-->
-        <% booksData.filter(elem => elem.isCompleted).map(elem => { %>
+        <% booksData.filter(elem => elem.isFavorited).map(elem => { %>
         <section
           class="bookItem flexBox"
           data-id="<%= elem.bookId %>"

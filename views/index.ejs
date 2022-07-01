@@ -38,9 +38,10 @@
       <!-- Navigation Display Area -->
       <nav class="navContent">
         <ul class="navList">
-          <li class="navListItems"><a href="#">Search</a></li>
+          <li class="navListItems"><a href="/discover">Discover</a></li>
           <li class="navListItems active"><a href="/">Books</a></li>
           <li class="navListItems"><a href="/completed">Completed</a></li>
+          <li class="navListItems"><a href="/favorites">Favorited</a></li>
           <li class="navListItems"><a href="#">Settings</a></li>
         </ul>
       </nav>
@@ -66,7 +67,7 @@
               <form action="">
                 <input
                   type="text"
-                  placeholder="Enter book name"
+                  placeholder="🔎 Search by book title"
                   class="bookSearchInput"
                 />
                 <!-- <button>Search</button> -->
@@ -142,7 +143,7 @@
               <section class="modalMoreBtns">
                 <span class="modalCompleteBtn"
                   ><i
-                    class="fa-solid fa-check completeBookItem"
+                    class="fa-solid fa-circle-check completeBookItem"
                     title="Mark book as completed"
                     data-id="<%= booksData.filter(elem => !elem.isCompleted)[0].bookId %>"
                     data-isCompleted="<%= booksData.filter(elem => !elem.isCompleted)[0].isCompleted %>"
@@ -225,7 +226,7 @@
               <section class="modalMoreBtns">
                 <span class="modalCompleteBtn"
                   ><i
-                    class="fa-solid fa-check completeBookItem"
+                    class="fa-solid fa-circle-check completeBookItem"
                     title="Mark book as completed"
                     data-id="<%= elem.bookId %>"
                     data-isCompleted="<%= elem.isCompleted %>"

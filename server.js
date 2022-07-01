@@ -58,6 +58,34 @@ app.get('/completed', async (request, response) => {
   }
 });
 
+// == GET == discover-books.ejs Homepage on '/discover'
+app.get('/discover', async (request, response) => {
+  try {
+    db.collection('books')
+      .find()
+      .toArray()
+      .then((data) => {
+        response.render('discover-books.ejs', { booksData: data });
+      });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
+});
+
+// == GET == favorite-books.ejs Homepage on '/favorites'
+app.get('/favorites', async (request, response) => {
+  try {
+    db.collection('books')
+      .find()
+      .toArray()
+      .then((data) => {
+        response.render('favorite-books.ejs', { booksData: data });
+      });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
+});
+
 // == POST == Add new books to MongoDB on '/addBook' from inputbtn (see main.js)
 app.post('/addBook', async (request, response) => {
   try {
