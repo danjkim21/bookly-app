@@ -38,7 +38,7 @@ async function toggleSideBar() {
 // Display all fiction best seller books in the "Most Popular in Fiction" discovery section
 async function displayBestSellersFiction(bookCategories) {
   const bookResultsFiction = bookCategories[0].books;
-  console.log(bookResultsFiction);
+  // console.log(bookResultsFiction);
 
   try {
     bookResultsFiction.forEach((elem) => {
@@ -57,6 +57,10 @@ async function displayBestSellersFiction(bookCategories) {
               <section class="editBookInfo">
                 <p class="bookTitle">${elem.title}</p>
                 <p class="bookAuthor">${elem.author}</p>
+                <span class="saveToPlaylistBtn" data-isbn="${elem.primary_isbn13}">
+                  <i class="fa-solid fa-circle-plus addToPlaylistBtn" data-isbn="${elem.primary_isbn13}"></i>
+                Add to playlist
+                </span>
               </section>
             </section>
             <p class="bookDescription">${elem.description}</p>
@@ -76,7 +80,7 @@ async function displayBestSellersFiction(bookCategories) {
 // Display all nonfiction best seller books in the "Most Popular in Nonfiction" discovery section
 async function displayBestSellersNonfiction(bookCategories) {
   const bookResultsNonfiction = bookCategories[1].books;
-  console.log(bookResultsNonfiction);
+  // console.log(bookResultsNonfiction);
 
   try {
     bookResultsNonfiction.forEach((elem) => {
@@ -95,6 +99,10 @@ async function displayBestSellersNonfiction(bookCategories) {
               <section class="editBookInfo">
                 <p class="bookTitle">${elem.title}</p>
                 <p class="bookAuthor">${elem.author}</p>
+                <span class="saveToPlaylistBtn" data-isbn="${elem.primary_isbn13}">
+                  <i class="fa-solid fa-circle-plus addToPlaylistBtn" data-isbn="${elem.primary_isbn13}"></i>
+                Add to playlist
+                </span>
               </section>
             </section>
             <p class="bookDescription">${elem.description}</p>
@@ -103,7 +111,71 @@ async function displayBestSellersNonfiction(bookCategories) {
         </section>
       `;
       document.querySelector('.bookResultsNonfiction').appendChild(bookItem);
+
+      // Add event listener to Save to Playlist Button (on each) to trigger save
+      const saveToPlaylistBtn = document.querySelectorAll('.saveToPlaylistBtn');
+      Array.from(saveToPlaylistBtn).forEach((elem) => {
+        elem.addEventListener('click', matchISBN);
+      });
     });
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+    return;
+  }
+}
+
+// ========= Update == Add book item from book discovery to Books Playlist Page ========= //
+
+async function matchISBN() {
+  const bookISBN = this.getAttribute('data-isbn');
+  console.log(`Book ISBN13 - ${bookISBN}`);
+
+  try {
+    const response = await fetch(
+      `https://www.googleapis.com/books/v1/volumes?q=isbn:${bookISBN}&key=AIzaSyByYEeZn4taw9OfJDef1qCOgAgSDschcaE`
+    );
+    const data = await response.json();
+    const matchedBookData = data.items[0]
+    console.log(matchedBookData);
+
+    // Once a match is found, run addBookToPlaylist Function
+    addBookToPlaylist(matchedBookData)
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+    return;
+  }
+}
+
+// == POST == Send new book data to MongoDB on POST (see server.js)
+async function addBookToPlaylist(matchedBookData) {
+  const bookId = matchedBookData.id;
+  const bookTitle = matchedBookData.volumeInfo.title;
+  const bookAuthors = matchedBookData.volumeInfo.authors;
+  const bookPageCount = matchedBookData.volumeInfo.pageCount;
+  const bookDescription = matchedBookData.volumeInfo.description;
+  const bookImage = matchedBookData.volumeInfo.imageLinks.smallThumbnail;
+
+  try {
+    const response = await fetch('addBook', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        bookId: bookId,
+        bookTitle: bookTitle,
+        bookAuthors: bookAuthors,
+        bookPageCount: bookPageCount,
+        bookDescription: bookDescription,
+        bookImage: bookImage,
+        userRating: null,
+        isFavorited: false,
+        isCompleted: false,
+      }),
+    });
+    const data = await response.json();
+    console.log(data);
+    window.location.replace('/');
   } catch (err) {
     console.error(err);
     res.sendStatus(500);
