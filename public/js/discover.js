@@ -23,7 +23,7 @@ async function toggleSideBar() {
     );
     const data = await response.json();
     const bookCategories = data.results.lists;
-    // console.log(bookCategories);
+    console.log(bookCategories);
 
     // When book data is fetched, run these two functions next
     displayBestSellersFiction(bookCategories);
@@ -86,6 +86,18 @@ async function displayBestSellersNonfiction(bookCategories) {
       bookItem.innerHTML = `<a class="bookCoverImage" href="#${elem.primary_isbn13}"> <img src="${elem.book_image}" alt="book cover image" /></a>
         <section id="${elem.primary_isbn13}" class="modal">
           <section class="modal__content">
+            <section class="editBookSummaryMain flexBox">
+              <img
+                src="${elem.book_image}"
+                alt="book cover image"
+                class="bookCoverImage"
+              />
+              <section class="editBookInfo">
+                <p class="bookTitle">${elem.title}</p>
+                <p class="bookAuthor">${elem.author}</p>
+              </section>
+            </section>
+            <p class="bookDescription">${elem.description}</p>
             <a href="#" class="modal__close">&times;</a>
           </section>
         </section>
