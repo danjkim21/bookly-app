@@ -27,7 +27,9 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+<p align="center">
+  <img src="public/images/bookly-demo.gif" width="75%" alt="space app recording"/>
+</p>
 
 So many books, so little time! I find new books to read faster than I can read them. Keeping track of all of them and remembering the order I want to read them can be cumbersome (plus I'm very forgetful and can't remember the books that I've read). 
 
@@ -42,7 +44,7 @@ I created this app based around creating and organizing "book playlists" similar
 - [MongoDB](https://www.mongodb.com/)
 - [EJS](https://ejs.co/)
 
-The Book data comes from the [Google Books API](https://developers.google.com/books/docs/v1/using). Books saved to your playlist are saved to MongoDB.
+The Book data comes from the [Google Books API](https://developers.google.com/books/docs/v1/using) and the [NYTimes Books API](https://developer.nytimes.com/docs/books-product/1/overview). Books added to your playlist are saved to MongoDB.
 
 <!-- GETTING STARTED -->
 
@@ -52,11 +54,17 @@ This API can be accessed via [https://bookly-crud-app.herokuapp.com/](https://bo
 
 ### Installation
 
-1. Clone the repo
+1. Create new MongoDB project and connect to your new project
+
+2. Create a .env file and add your MongoDB connection string to it (DB_STRING)
+
+3. Create Google and NYTimes Developer acccounts, and generate API keys
+
+4. Clone the repo
    ```sh
    git clone https://github.com/github_username/repo_name.git
    ```
-2. Install NPM packages
+5. Install NPM packages
    ```sh
    npm install
    ```
@@ -80,17 +88,17 @@ This API can be accessed via [https://bookly-crud-app.herokuapp.com/](https://bo
 ## Roadmap
 
 - [x] Create books page displaying all finished books
+- [x] Create Discover books feature (Search Page)
 - [ ] Rate finished books and add book notes
 - [ ] Sorteable playlist (drag and drop and sort) feature
-- [ ] Create Discover books feature (Search Page)
-- [ ] Create multiple different playlists
 - [ ] Login 
+- [ ] Create multiple different playlists
 
 See the [open issues](https://github.com/danjkim21/adv-nuclear-reactor-api/issues) for a full list of proposed features (and known issues).
 
 ## Lessons Learned:
 
-My biggest take away is how powerful JavaScript is as a language. Prior to this project, I assumed that I would always need Python to scrape any web content. After finding Cheerio, scraping content became--dare I say--a much less daunting experience due to how intuitive and easy to use Cheerio is.
+My biggest take away is how important it is to define a project MVC and UI/UX design prior to building out and developing any full stack web application. There were several times throughout the build process where I needed to go back and review the logic of my project design, to which there was none. In the future, I'll make sure to write out and define my project MVC, and using Figma to craft my project design to prevent the need to backtrack. 
 
 <!-- CONTRIBUTING -->
 
