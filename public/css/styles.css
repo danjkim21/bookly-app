@@ -163,7 +163,8 @@ body {
   margin-right: 1rem;
   border-radius: 2px;
 }
-.saveToPlaylistBtn, .addToPlaylistBtn {
+.saveToPlaylistBtn,
+.addToPlaylistBtn {
   transition: all ease-in-out 75ms;
 }
 
@@ -183,6 +184,7 @@ body {
 .completeBookItem:hover,
 .modal__close:hover,
 .likeBookItemBtns:hover,
+.modalLikeBookItemBtns:hover,
 .hamburgerBtn:hover,
 .saveToPlaylistBtn:hover .addToPlaylistBtn {
   cursor: pointer;
@@ -246,7 +248,8 @@ body {
   padding-left: 1rem;
   transition: all ease-in-out 75ms;
 }
-.likeBookItemBtns {
+.likeBookItemBtns,
+.modalLikeBookItemBtns {
   padding-right: 1rem;
   transition: all ease-in-out 75ms;
 

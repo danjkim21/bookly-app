@@ -12,6 +12,8 @@ async function toggleSideBar() {
   navContent.classList.toggle('visible');
 }
 
+
+
 // ========= Fetch NYTimes Books API JSON Data ========= //
 // NYTimes API Docs - https://developer.nytimes.com/docs/books-product/1/overview
 

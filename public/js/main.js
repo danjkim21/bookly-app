@@ -119,6 +119,7 @@ async function addBook(clickedBookItem) {
         userRating: null,
         isFavorited: false,
         isCompleted: false,
+        completionDate: null,
       }),
     });
     const data = await response.json();
@@ -150,7 +151,7 @@ Array.from(favoriteBookBtn).forEach((elem) => {
 
 async function toggleFavoriteBookItem() {
   const bookId = this.getAttribute('data-id');
-  // console.log(this.parentNode.getAttribute('data-isFavorited'));
+  console.log(this.getAttribute('data-isFavorited'));
 
   // If the button is invisible (book not favorited) -> favorite book and add heart button
   if (this.classList.contains('invisible')) {
@@ -190,6 +191,65 @@ async function toggleFavoriteBookItem() {
       this.style.color = 'white';
       this.classList.add('invisible');
       this.classList.remove('visible');
+      location.reload();
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+      return;
+    }
+  }
+}
+
+// == UPDATE == (un)favorites a book when clicking the MODAL button
+const modalFavoriteBookBtn = document.querySelectorAll('.modalLikeBookItemBtns');
+Array.from(modalFavoriteBookBtn).forEach((elem) => {
+  elem.addEventListener('click', modalToggleFavoriteBookItem);
+  // Immediately show books that are favorited/not favorited
+  if (elem.getAttribute('data-isFavorited') === 'true') {
+    elem.style.color = '#63da63dc';
+  } else if (elem.getAttribute('data-isFavorited') === 'false') {
+    elem.style.color = 'white';
+  }
+});
+
+async function modalToggleFavoriteBookItem() {
+  const bookId = this.getAttribute('data-id');
+  console.log(this.getAttribute('data-isFavorited'));
+
+  // If the modal button data-attr is false -> favorite book and change heart color to green
+  if (this.getAttribute('data-isFavorited') === 'false') {
+    try {
+      const response = await fetch('addFavorite', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bookId: bookId,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+
+      this.style.color = '#63da63dc';
+      location.reload();
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+      return;
+    }
+    // If the modal button data-attr is true -> unfavorite book and change heart color to white
+  } else if (this.getAttribute('data-isFavorited') === 'true') {
+    try {
+      const response = await fetch('rmFavorite', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          bookId: bookId,
+        }),
+      });
+      const data = await response.json();
+      console.log(data);
+
+      this.style.color = 'white';
       location.reload();
     } catch (err) {
       console.error(err);

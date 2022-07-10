@@ -100,6 +100,7 @@ app.post('/addBook', async (request, response) => {
         userRating: request.body.userRating,
         isFavorited: request.body.isFavorited,
         isCompleted: request.body.isCompleted,
+        completionDate: request.body.completionDate,
       })
       .then((result) => {
         console.log(`${request.body.bookTitle} - Added to Playlist`);

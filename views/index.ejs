@@ -131,7 +131,7 @@
                   <p class="bookAuthor"><%= booksData.filter(elem => !elem.isCompleted)[0].bookAuthors %></p>
                   <span class="modalFavoriteBtn"
                     ><i
-                      class="fa-solid fa-heart likeBookItemBtns invisible"
+                      class="fa-solid fa-heart modalLikeBookItemBtns"
                       title="Favorite this book"
                       data-id="<%= booksData.filter(elem => !elem.isCompleted)[0].bookId %>"
                       data-isFavorited="<%= booksData.filter(elem => !elem.isCompleted)[0].isFavorited %>"
@@ -209,18 +209,15 @@
                 <section class="editBookInfo">
                   <p class="bookTitle"><%= elem.bookTitle %></p>
                   <p class="bookAuthor"><%= elem.bookAuthors %></p>
-
-                  <!-- NEED TO FIX --- Issue with Favorite button in Modal (invisible but still clickable in other modals) -->
                   <span class="modalFavoriteBtn"
                     ><i
-                      class="fa-solid fa-heart likeBookItemBtns invisible"
+                      class="fa-solid fa-heart modalLikeBookItemBtns "
                       title="Favorite this book"
                       data-id="<%= elem.bookId %>"
                       data-isFavorited="<%= elem.isFavorited %>"
                     ></i
                     >Favorite</span
                   >
-                  <!-- ^ NEED TO FIX ^ -->
                 </section>
               </section>
               <section class="modalMoreBtns">
