@@ -12,8 +12,6 @@ async function toggleSideBar() {
   navContent.classList.toggle('visible');
 }
 
-
-
 // ========= Fetch NYTimes Books API JSON Data ========= //
 // NYTimes API Docs - https://developer.nytimes.com/docs/books-product/1/overview
 
@@ -30,6 +28,7 @@ async function toggleSideBar() {
     // When book data is fetched, run these two functions next
     displayBestSellersFiction(bookCategories);
     displayBestSellersNonfiction(bookCategories);
+    displayBestSellersAdvice(bookCategories);
   } catch (err) {
     console.error(err);
     res.sendStatus(500);
@@ -59,11 +58,13 @@ async function displayBestSellersFiction(bookCategories) {
               <section class="editBookInfo">
                 <p class="bookTitle">${elem.title}</p>
                 <p class="bookAuthor">${elem.author}</p>
-                <span class="saveToPlaylistBtn" data-isbn="${elem.primary_isbn13}">
-                  <i class="fa-solid fa-circle-plus addToPlaylistBtn" data-isbn="${elem.primary_isbn13}"></i>
-                Add to playlist
-                </span>
               </section>
+            </section>
+            <section class="modalMoreBtns">
+              <span class="saveToPlaylistBtn" data-isbn="${elem.primary_isbn13}">
+                <i class="fa-solid fa-circle-plus addToPlaylistBtn" data-isbn="${elem.primary_isbn13}"></i>
+                Add to playlist
+              </span>
             </section>
             <p class="bookDescription">${elem.description}</p>
             <a href="#" class="modal__close">&times;</a>
@@ -101,11 +102,13 @@ async function displayBestSellersNonfiction(bookCategories) {
               <section class="editBookInfo">
                 <p class="bookTitle">${elem.title}</p>
                 <p class="bookAuthor">${elem.author}</p>
-                <span class="saveToPlaylistBtn" data-isbn="${elem.primary_isbn13}">
-                  <i class="fa-solid fa-circle-plus addToPlaylistBtn" data-isbn="${elem.primary_isbn13}"></i>
-                Add to playlist
-                </span>
               </section>
+            </section>
+            <section class="modalMoreBtns">
+              <span class="saveToPlaylistBtn" data-isbn="${elem.primary_isbn13}">
+                <i class="fa-solid fa-circle-plus addToPlaylistBtn" data-isbn="${elem.primary_isbn13}"></i>
+                Add to playlist
+              </span>
             </section>
             <p class="bookDescription">${elem.description}</p>
             <a href="#" class="modal__close">&times;</a>
@@ -113,6 +116,56 @@ async function displayBestSellersNonfiction(bookCategories) {
         </section>
       `;
       document.querySelector('.bookResultsNonfiction').appendChild(bookItem);
+
+      // Add event listener to Save to Playlist Button (on each) to trigger save
+      const saveToPlaylistBtn = document.querySelectorAll('.saveToPlaylistBtn');
+      Array.from(saveToPlaylistBtn).forEach((elem) => {
+        elem.addEventListener('click', matchISBN);
+      });
+    });
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+    return;
+  }
+}
+
+// Display all Advice/How-To best seller books in the "Most Popular in Advice/How-To" discovery section
+async function displayBestSellersAdvice(bookCategories) {
+  const bookResultsAdvice = bookCategories[6].books;
+  // console.log(bookResultsAdvice);
+
+  try {
+    bookResultsAdvice.forEach((elem) => {
+      let bookItem = document.createElement('section');
+      bookItem.setAttribute('class', 'bookResult');
+      bookItem.setAttribute('data-isbn', `${elem.primary_isbn13}`);
+      bookItem.innerHTML = `<a class="bookCoverImage" href="#${elem.primary_isbn13}"> <img src="${elem.book_image}" alt="book cover image" /></a>
+        <section id="${elem.primary_isbn13}" class="modal">
+          <section class="modal__content">
+            <section class="editBookSummaryMain flexBox">
+              <img
+                src="${elem.book_image}"
+                alt="book cover image"
+                class="bookCoverImage"
+              />
+              <section class="editBookInfo">
+                <p class="bookTitle">${elem.title}</p>
+                <p class="bookAuthor">${elem.author}</p>
+              </section>
+            </section>
+            <section class="modalMoreBtns">
+              <span class="saveToPlaylistBtn" data-isbn="${elem.primary_isbn13}">
+                  <i class="fa-solid fa-circle-plus addToPlaylistBtn" data-isbn="${elem.primary_isbn13}"></i>
+                  Add to playlist
+              </span>
+            </section>
+            <p class="bookDescription">${elem.description}</p>
+            <a href="#" class="modal__close">&times;</a>
+          </section>
+        </section>
+      `;
+      document.querySelector('.bookResultsAdvice').appendChild(bookItem);
 
       // Add event listener to Save to Playlist Button (on each) to trigger save
       const saveToPlaylistBtn = document.querySelectorAll('.saveToPlaylistBtn');
@@ -138,11 +191,11 @@ async function matchISBN() {
       `https://www.googleapis.com/books/v1/volumes?q=isbn:${bookISBN}&key=AIzaSyByYEeZn4taw9OfJDef1qCOgAgSDschcaE`
     );
     const data = await response.json();
-    const matchedBookData = data.items[0]
+    const matchedBookData = data.items[0];
     console.log(matchedBookData);
 
     // Once a match is found, run addBookToPlaylist Function
-    addBookToPlaylist(matchedBookData)
+    addBookToPlaylist(matchedBookData);
   } catch (err) {
     console.error(err);
     res.sendStatus(500);
