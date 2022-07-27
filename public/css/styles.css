@@ -90,6 +90,30 @@ body {
   color: #d4dbd5;
   width: 80%;
 }
+/* ===== stats section styling =====  */
+.statsSection {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 1rem;
+}
+.stats {
+  height: auto;
+  width: 185px;
+  padding: 1.35rem;
+  background-color: #7a9983ab;
+  border: 1px solid #7a9983ab;
+  border-radius: 4px;
+}
+.stats > .sectionTitle {
+  font-size: 1.15rem;
+  margin-top: 0;
+}
+.statsItem {
+  font-size: 1.55rem;
+  font-weight: 700;
+}
+
 .ActiveBookArea {
   padding-top: 1rem;
 }

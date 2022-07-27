@@ -55,13 +55,18 @@
       </section>
 
       <!-- Completed Books Description Paragraph -->
-      <p class="playlistDescription">
+      <!-- <p class="playlistDescription">
         Favorited books! description ... Lorem ipsum dolor sit, amet consectetur
         adipisicing elit. Hic, consequatur! Fugiat dicta asperiores quis suscipit iste
         numquam atque optio mollitia odio modi!
-      </p>
+      </p> -->
 
-      <section></section>
+      <section class="statsSection">
+        <section class="stats">
+          <h2 class="sectionTitle">Favorited</h2>
+          <span class="statsItem"><%= booksData.filter(elem => elem.isFavorited).length %></span>
+        </section>
+      </section>
 
       <!-- ********** TEST AREA ********** -->
       <section class="bookPlaylistArea">
