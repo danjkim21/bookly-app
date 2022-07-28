@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookly</title>
 
-    <link rel="icon" href="/images/book-solid.svg">
+    <link rel="icon" href="/images/book-solid.svg" />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
       rel="stylesheet"
@@ -65,7 +65,13 @@
       <section class="statsSection">
         <section class="stats">
           <h2 class="sectionTitle">Completed</h2>
+          <i class="fa-solid fa-circle-check statsIcon"></i> 
           <span class="statsItem"><%= countCompleted %></span>
+        </section>
+        <section class="stats">
+          <h2 class="sectionTitle">Pages Read</h2>
+          <i class="fa-solid fa-scroll statsIcon"></i>
+          <span class="statsItem"><%= booksData.map(elem => elem.bookPageCount).reduce((acc,c) => acc + c, 0) %></span>
         </section>
       </section>
 
@@ -142,6 +148,7 @@
                   >Delete
                 </span>
               </section>
+              <h4 class="modal--subheader">Description</h4>
               <p class="bookDescription"><%= elem.bookDescription %></p>
               <a href="#" class="modal__close">&times;</a>
             </section>

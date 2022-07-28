@@ -106,12 +106,16 @@ body {
   border-radius: 4px;
 }
 .stats > .sectionTitle {
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   margin-top: 0;
 }
 .statsItem {
-  font-size: 1.55rem;
+  font-size: 1.85rem;
   font-weight: 700;
+}
+.stats > .statsIcon {
+  font-size: 1.35rem;
+  padding-right: 5px;
 }
 
 .ActiveBookArea {
@@ -213,7 +217,8 @@ body {
 .likeBookItemBtns:hover,
 .modalLikeBookItemBtns:hover,
 .hamburgerBtn:hover,
-.saveToPlaylistBtn:hover .addToPlaylistBtn {
+.saveToPlaylistBtn:hover .addToPlaylistBtn,
+.purchaseLink:hover {
   cursor: pointer;
   color: #63da63dc;
 }
@@ -376,11 +381,26 @@ body {
 .saveToPlaylistBtn > i {
   padding-right: 0.75rem;
 }
+.modal--subheader {
+  padding: 0 1rem;
+  margin-bottom: 0.35rem;
+}
+.bookPurchaseLinks {
+  padding: 0 1rem;
+}
+.purchaseLink {
+  display: block;
+  text-decoration: none;
+  margin: 7.5px 0;
+  padding-left: 5px;
+  color:#ffffff;
+  transition: all ease-in-out 75ms;
+}
 .bookDescription {
   font-size: 0.9rem;
   line-height: 1.5;
   max-height: 235px;
-  margin: 1.25rem;
+  margin: 0 1rem;
   overflow-y: auto;
   border-radius: 4px;
   /* background-color: #78967dc2; */

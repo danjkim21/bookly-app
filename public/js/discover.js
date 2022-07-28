@@ -66,7 +66,14 @@ async function displayBestSellersFiction(bookCategories) {
                 Add to playlist
               </span>
             </section>
+            <h4 class="modal--subheader">Description</h4>
             <p class="bookDescription">${elem.description}</p>
+            <h4 class="modal--subheader">Purchase</h4>
+            <section class="bookPurchaseLinks">
+              <a class="purchaseLink" href="${elem.buy_links[0].url}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${elem.buy_links[0].name}</a>
+              <a class="purchaseLink" href="${elem.buy_links[0].url}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${elem.buy_links[1].name}</a>
+              <a class="purchaseLink" href="${elem.buy_links[0].url}" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${elem.buy_links[2].name}</a>
+            </section>
             <a href="#" class="modal__close">&times;</a>
           </section>
         </section>
