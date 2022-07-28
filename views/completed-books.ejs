@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bookly</title>
 
+    <link rel="icon" href="/images/book-solid.svg">
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap"
       rel="stylesheet"
@@ -64,14 +65,14 @@
       <section class="statsSection">
         <section class="stats">
           <h2 class="sectionTitle">Completed</h2>
-          <span class="statsItem"><%= booksData.filter(elem => elem.isCompleted).length %></span>
+          <span class="statsItem"><%= countCompleted %></span>
         </section>
       </section>
 
       <!-- ********** TEST AREA ********** -->
       <section class="bookPlaylistArea">
         <!-- Loop through book entries-->
-        <% booksData.filter(elem => elem.isCompleted).map(elem => { %>
+        <% booksData.map(elem => { %>
         <section
           class="bookItem flexBox"
           data-id="<%= elem.bookId %>"

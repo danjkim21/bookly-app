@@ -31,12 +31,18 @@ app.use(cors());
 // == GET == index.ejs Homepage on '/'
 app.get('/', async (request, response) => {
   try {
-    db.collection('books')
-      .find()
-      .toArray()
-      .then((data) => {
-        response.render('index.ejs', { booksData: data });
-      });
+    const bookItems = await db.collection('books').find().toArray();
+    response.render('index.ejs', { booksData: bookItems });
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+  }
+});
+
+// == GET == discover-books.ejs Homepage on '/discover'
+app.get('/discover', async (request, response) => {
+  try {
+    const bookItems = await db.collection('books').find().toArray();
+    response.render('discover-books.ejs', { booksData: bookItems });
   } catch (error) {
     response.status(500).send({ message: error.message });
   }
@@ -45,42 +51,36 @@ app.get('/', async (request, response) => {
 // == GET == Return completed-books.ejs on '/completed'
 app.get('/completed', async (request, response) => {
   try {
-    db.collection('books')
-      .find()
-      .sort({completionDate: -1})
-      .toArray()
-      .then((data) => {
-        response.render('completed-books.ejs', { booksData: data });
-      });
+    const bookItemsDateSorted = await db
+      .collection('books')
+      .find({ isCompleted: true })
+      .sort({ completionDate: -1 })
+      .toArray();
+    const booksCompleted = await db
+      .collection('books')
+      .countDocuments({ isCompleted: true });
+
+    response.render('completed-books.ejs', {
+      booksData: bookItemsDateSorted,
+      countCompleted: booksCompleted,
+    });
   } catch (error) {
     response.status(500).send({ message: error.message });
     return;
   }
 });
 
-// == GET == discover-books.ejs Homepage on '/discover'
-app.get('/discover', async (request, response) => {
-  try {
-    db.collection('books')
-      .find()
-      .toArray()
-      .then((data) => {
-        response.render('discover-books.ejs', { booksData: data });
-      });
-  } catch (error) {
-    response.status(500).send({ message: error.message });
-  }
-});
-
 // == GET == favorite-books.ejs Homepage on '/favorites'
 app.get('/favorites', async (request, response) => {
   try {
-    db.collection('books')
-      .find()
-      .toArray()
-      .then((data) => {
-        response.render('favorite-books.ejs', { booksData: data });
-      });
+    const bookItems = await db.collection('books').find({ isFavorited: true }).toArray();
+    const booksFavorited = await db
+      .collection('books')
+      .countDocuments({ isFavorited: true });
+    response.render('favorite-books.ejs', {
+      booksData: bookItems,
+      countFavorited: booksFavorited,
+    });
   } catch (error) {
     response.status(500).send({ message: error.message });
   }
