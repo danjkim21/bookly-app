@@ -178,7 +178,7 @@ body {
 }
 .bookResultsFiction,
 .bookResultsNonfiction,
-.bookResultsAdvice {
+.bookResultsAdvice, .bookResultsTimeline {
   height: 175px;
   display: flex;
   justify-content: flex-start;
@@ -192,6 +192,14 @@ body {
   height: 165px;
   margin-right: 1rem;
   border-radius: 2px;
+}
+.timelineBookImages {
+  height: 165px;
+  min-height: 165px;
+  margin-right: 1rem;
+  border-radius: 2px;
+  z-index: 1;
+
 }
 .saveToPlaylistBtn,
 .addToPlaylistBtn {
@@ -242,18 +250,21 @@ body {
 .bookResultsFiction::-webkit-scrollbar,
 .bookResultsNonfiction::-webkit-scrollbar,
 .bookResultsAdvice::-webkit-scrollbar,
+.bookResultsTimeline::-webkit-scrollbar,
 .bookDescription::-webkit-scrollbar {
   height: 10px;
   width: 8px;
 }
 .bookResultsFiction::-webkit-scrollbar-track,
 .bookResultsNonfiction::-webkit-scrollbar-track,
-.bookResultsAdvice::-webkit-scrollbar-track {
+.bookResultsAdvice::-webkit-scrollbar-track,
+.bookResultsTimeline::-webkit-scrollbar-track, {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 .bookResultsFiction::-webkit-scrollbar-thumb,
 .bookResultsNonfiction::-webkit-scrollbar-thumb,
 .bookResultsAdvice::-webkit-scrollbar-thumb,
+.bookResultsTimeline::-webkit-scrollbar-thumb,
 .bookDescription::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #52585796;

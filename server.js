@@ -86,6 +86,26 @@ app.get('/favorites', async (request, response) => {
   }
 });
 
+// == GET == timeline-books.ejs Homepage on '/timeline'
+app.get('/timeline', async (request, response) => {
+  try {
+    const bookItemsDateSorted = await db
+      .collection('books')
+      .find({ isCompleted: true })
+      .sort({ completionDate: -1 })
+      .toArray();
+
+
+    response.render('timeline-books.ejs', {
+      booksData: bookItemsDateSorted
+    });
+    
+  } catch (error) {
+    response.status(500).send({ message: error.message });
+    return;
+  }
+});
+
 // == POST == Add new books to MongoDB on '/addBook' from inputbtn (see main.js)
 app.post('/addBook', async (request, response) => {
   try {
