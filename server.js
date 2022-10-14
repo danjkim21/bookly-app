@@ -13,12 +13,30 @@ let db,
   dbName = 'booklyPlaylists',
   collection;
 
+let client = new MongoClient(dbConnectionStr);
+
 // ====== MongoDB connection ====== //
-MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then((client) => {
+
+client.connect((err, client) => {
+  if (err) {
+    console.error(err);
+    return false;
+  }
+
   console.log(`Connected to ${dbName} Database`);
   db = client.db(dbName);
   collection = db.collection('books');
+  // connection to mongo is successful, listen for requests
+  app.listen(PORT, () => {
+    console.log('listening for requests');
+  });
 });
+
+// MongoClient.connect(dbConnectionStr, { useUnifiedTopology: true }).then((client) => {
+//   console.log(`Connected to ${dbName} Database`);
+//   db = client.db(dbName);
+//   collection = db.collection('books');
+// });
 
 // ====== MiddleWare ====== //
 app.set('view engine', 'ejs');
@@ -95,11 +113,9 @@ app.get('/timeline', async (request, response) => {
       .sort({ completionDate: -1 })
       .toArray();
 
-
     response.render('timeline-books.ejs', {
-      booksData: bookItemsDateSorted
+      booksData: bookItemsDateSorted,
     });
-    
   } catch (error) {
     response.status(500).send({ message: error.message });
     return;
@@ -242,6 +258,6 @@ app.delete('/rmBook', async (request, response) => {
 });
 
 // Listen on server PORT
-app.listen(PORT, () => {
-  console.log(`Server is running on port`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port`);
+// });
