@@ -15,7 +15,7 @@
     <a href="https://github.com/danjkim21/bookly-app"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://bookly-crud-app.herokuapp.com/">View Demo</a>
+    <a href="https://bookly.cyclic.app/">View Demo</a>
     ·
     <a href="https://github.com/danjkim21/bookly-app/issues">Report Bug</a>
     ·
@@ -50,7 +50,7 @@ The Book data comes from the [Google Books API](https://developers.google.com/bo
 
 ## Getting Started
 
-This API can be accessed via [https://bookly-crud-app.herokuapp.com/](https://bookly-crud-app.herokuapp.com/) or as a local copy. To get a local copy up and running follow these simple example steps.
+This API can be accessed via [https://bookly.cyclic.app/](https://bookly.cyclic.app/) or as a local copy. To get a local copy up and running follow these simple example steps.
 
 ### Installation
 
